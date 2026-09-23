@@ -18,12 +18,38 @@
       theme: {
         extend: {
           fontFamily: {
-            sans: ['Pretendard', 'Plus Jakarta Sans', 'sans-serif'],
-            display: ['Syne', 'Pretendard', 'sans-serif'],
+            sans: ['Pretendard', 'Inter', 'Plus Jakarta Sans', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'sans-serif'],
+            display: ['Inter', 'Syne', 'Pretendard', 'sans-serif'],
             editorial: ['Cormorant Garamond', 'Pretendard', 'serif'],
             mono: ['JetBrains Mono', 'monospace'],
           },
           colors: {
+            canvas: '#000000',
+            surface: {
+              1: '#15181e',
+              2: '#1f232b',
+              3: '#3b3d45',
+            },
+            hairline: '#3b3d45',
+            'hairline-soft': 'rgba(178, 182, 189, 0.1)',
+            ink: {
+              DEFAULT: '#ffffff',
+              muted: '#b2b6bd',
+              subtle: '#656a76',
+            },
+            product: {
+              terraform: '#7b42bc',
+              'terraform-bright': '#911ced',
+              vault: '#ffcf25',
+              consul: '#e62b1e',
+              waypoint: '#14c6cb',
+              vagrant: '#1868f2',
+              nomad: '#00ca8e',
+              boundary: '#f24c53',
+            },
+            accent: {
+              blue: '#2b89ff',
+            },
             bronze: {
               50: '#FBF8F3',
               100: '#F6F0E4',
@@ -48,9 +74,126 @@
   </script>
 
   <style>
+    :root {
+      --canvas: #120207;
+      --surface-1: #1a050e;
+      --surface-2: #240814;
+      --surface-3: #3b0d1e;
+      --hairline: rgba(225, 60, 95, 0.25);
+      --hairline-soft: rgba(225, 60, 95, 0.12);
+      --ink: #ffffff;
+      --ink-muted: #d4b8c2;
+      --ink-subtle: #8a6574;
+      --product-terraform: #7b42bc;
+      --product-vault: #ffcf25;
+      --product-consul: #e62b1e;
+      --product-waypoint: #14c6cb;
+      --product-nomad: #00ca8e;
+      --accent-blue: #2b89ff;
+    }
+
     ::-webkit-scrollbar { width: 6px; }
-    ::-webkit-scrollbar-track { background: #F5F5F4; }
-    ::-webkit-scrollbar-thumb { background: #A8A29E; }
+    ::-webkit-scrollbar-track { background: #120207; }
+    ::-webkit-scrollbar-thumb { background: rgba(225, 60, 95, 0.4); border-radius: 3px; }
+    ::-webkit-scrollbar-thumb:hover { background: rgba(225, 60, 95, 0.75); }
+
+    /* ⭐️ DESIGN.md 기반 HashiCorp 정밀 구조 + 럭셔리 다크 레드와인 시스템 ⭐️ */
+    .hashi-canvas {
+      background-color: #120207 !important;
+      color: #ffffff !important;
+    }
+    .hashi-surface-1 {
+      background-color: rgba(26, 5, 14, 0.85) !important;
+      backdrop-filter: blur(16px) !important;
+      -webkit-backdrop-filter: blur(16px) !important;
+      border: 1px solid rgba(225, 60, 95, 0.22) !important;
+      color: #ffffff !important;
+    }
+    .hashi-surface-2 {
+      background-color: rgba(38, 8, 20, 0.85) !important;
+      border: 1px solid rgba(225, 60, 95, 0.3) !important;
+      color: #ffffff !important;
+    }
+    .hashi-card {
+      background-color: rgba(24, 5, 13, 0.82) !important;
+      backdrop-filter: blur(16px) !important;
+      -webkit-backdrop-filter: blur(16px) !important;
+      border: 1px solid rgba(225, 60, 95, 0.22) !important;
+      border-radius: 12px !important;
+      color: #ffffff !important;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .hashi-card:hover {
+      border-color: rgba(225, 60, 95, 0.55) !important;
+      background-color: rgba(36, 8, 20, 0.92) !important;
+      box-shadow: 0 12px 32px -6px rgba(18, 2, 7, 0.85), 0 0 20px -2px rgba(225, 29, 72, 0.22) !important;
+    }
+
+    /* 8px 모서리 단정 CTA 버튼 시스템 (DESIGN.md 화이트 Primary + 다크와인 Secondary) */
+    .hashi-btn-primary {
+      background-color: #ffffff !important;
+      color: #120207 !important;
+      font-size: 13.5px !important;
+      font-weight: 600 !important;
+      border-radius: 8px !important;
+      padding: 10px 18px !important;
+      border: 1px solid transparent !important;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      cursor: pointer;
+    }
+    .hashi-btn-primary:hover {
+      background-color: #ffe4e6 !important;
+      box-shadow: 0 4px 18px rgba(225, 29, 72, 0.4);
+      transform: translateY(-1px);
+    }
+    .hashi-btn-secondary {
+      background-color: rgba(38, 8, 20, 0.85) !important;
+      color: #ffffff !important;
+      border: 1px solid rgba(225, 60, 95, 0.32) !important;
+      font-size: 13px !important;
+      font-weight: 600 !important;
+      border-radius: 8px !important;
+      padding: 10px 18px !important;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      cursor: pointer;
+    }
+    .hashi-btn-secondary:hover {
+      background-color: rgba(60, 14, 32, 0.95) !important;
+      border-color: rgba(225, 60, 95, 0.65) !important;
+      color: #ffffff !important;
+      transform: translateY(-1px);
+    }
+
+    /* Eyebrow & Pills */
+    .hashi-eyebrow {
+      font-size: 12px !important;
+      font-weight: 600 !important;
+      line-height: 1.23 !important;
+      letter-spacing: 0.6px !important;
+      text-transform: uppercase !important;
+      color: #d4b8c2 !important;
+    }
+    .hashi-pill {
+      background-color: rgba(26, 5, 14, 0.85) !important;
+      border: 1px solid rgba(225, 60, 95, 0.25) !important;
+      color: #e5cbd4 !important;
+      border-radius: 9999px !important;
+      font-size: 11.5px !important;
+      font-weight: 600 !important;
+      letter-spacing: 0.5px !important;
+      padding: 4px 12px !important;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
 
     /* ⭐️ 한글 텍스트 단어 단위 자연스러운 줄바꿈 보장 (글자 쪼개짐 방지) ⭐️ */
     h1, h2, h3, h4, .break-keep, [id^="card-title-"], [id^="card-concept-"], #modal-title, #modal-concept {
@@ -266,107 +409,34 @@
       background: linear-gradient(90deg, #7a1832 0%, #4a0d1e 100%) !important;
     }
 
-    /* ⭐️ [공간 디자인 5대 테마 컬러 시스템] ⭐️ */
-    body.theme-warm-travertine {
-      background-color: #F8F5EE !important;
-      color: #1A1918 !important;
+    /* ⭐️ DESIGN.md Enterprise Architecture + Luxury Deep Wine Canvas Global System ⭐️ */
+    body.hashi-canvas {
+      background-color: #120207 !important;
+      background-image: 
+        radial-gradient(rgba(244, 208, 155, 0.08) 1px, transparent 1px),
+        radial-gradient(circle at 50% 0%, #3a0818 0%, #1f040d 38%, #0e0106 85%) !important;
+      background-size: 28px 28px, 100% 100% !important;
+      background-repeat: repeat, no-repeat !important;
+      background-attachment: fixed !important;
+      color: #ffffff !important;
     }
-    body.theme-warm-travertine #portfolio {
-      background-color: #F4EFEB !important;
-      border-color: #E7DFD5 !important;
+    body.hashi-canvas #portfolio,
+    body.hashi-canvas #designer-profile {
+      background-color: transparent !important;
+      border-color: rgba(225, 60, 95, 0.22) !important;
     }
-    body.theme-warm-travertine #designer-profile {
-      background-color: #FAF7F2 !important;
-      border-color: #E7DFD5 !important;
+    body.hashi-canvas [id^="card-title-"] {
+      color: #ffffff !important;
     }
-    body.theme-warm-travertine #designer-profile > div > div {
-      background-color: #F2EBE1 !important;
-      border-color: #E2D7C8 !important;
+    body.hashi-canvas [id^="card-concept-"] {
+      color: #d4b8c2 !important;
     }
-    body.theme-warm-travertine [id^="card-title-"],
-    body.theme-warm-travertine #web-profile-name,
-    body.theme-warm-travertine #portfolio-section-title {
-      color: #1C1917 !important;
+    body.hashi-canvas #portfolio-section-title,
+    body.hashi-canvas #web-profile-name {
+      color: #ffffff !important;
     }
-
-    body.theme-minimal-white {
-      background-color: #F9F9F8 !important;
-      color: #1C1917 !important;
-    }
-
-    body.theme-dark-slate {
-      background-color: #121316 !important;
-      color: #E5E7EB !important;
-    }
-    body.theme-dark-slate #portfolio {
-      background-color: #18191D !important;
-      border-color: #262930 !important;
-    }
-    body.theme-dark-slate #designer-profile {
-      background-color: #141518 !important;
-      border-color: #262930 !important;
-    }
-    body.theme-dark-slate #designer-profile > div > div {
-      background-color: #1E2026 !important;
-      border-color: #323640 !important;
-    }
-    body.theme-dark-slate [id^="card-title-"],
-    body.theme-dark-slate #web-profile-name,
-    body.theme-dark-slate #portfolio-section-title {
-      color: #FFFFFF !important;
-    }
-    body.theme-dark-slate [id^="card-concept-"],
-    body.theme-dark-slate #web-profile-intro {
-      color: #9CA3AF !important;
-    }
-    body.theme-dark-slate .bg-white,
-    body.theme-dark-slate .arch-capsule-card {
-      background-color: #1E2026 !important;
-      color: #E5E7EB !important;
-      border-color: #323640 !important;
-    }
-    body.theme-dark-slate .drawing-capsule-chip {
-      background-color: #262930 !important;
-      color: #D1D5DB !important;
-      border-color: #3B404C !important;
-    }
-    body.theme-dark-slate .drawing-capsule-chip:hover {
-      background-color: #FFFFFF !important;
-      color: #121316 !important;
-    }
-
-    body.theme-modern-ecru {
-      background-color: #F7F6F2 !important;
-      color: #1F2937 !important;
-    }
-    body.theme-modern-ecru #portfolio {
-      background-color: #EFECE4 !important;
-      border-color: #E2DDD5 !important;
-    }
-    body.theme-modern-ecru #designer-profile {
-      background-color: #F4F2EC !important;
-      border-color: #E2DDD5 !important;
-    }
-    body.theme-modern-ecru #designer-profile > div > div {
-      background-color: #EAE5DC !important;
-      border-color: #DBD5CA !important;
-    }
-
-    body.theme-technical-bim {
-      background-color: #F8FAFC !important;
-      color: #0F172A !important;
-    }
-    body.theme-technical-bim #portfolio {
-      background-color: #F1F5F9 !important;
-      border-color: #E2E8F0 !important;
-    }
-    body.theme-technical-bim #designer-profile {
-      background-color: #FFFFFF !important;
-      border-color: #E2E8F0 !important;
-    }
-    body.theme-technical-bim #designer-profile > div > div {
-      background-color: #F8FAFC !important;
-      border-color: #CBD5E1 !important;
+    body.hashi-canvas #web-profile-intro {
+      color: #e5cbd4 !important;
     }
   </style>
 
@@ -395,54 +465,54 @@
     }
   </style>
 </head>
-<body class="theme-warm-travertine bg-[#FBF9F5] text-stone-900 antialiased font-sans pb-24">
+<body class="hashi-canvas antialiased font-sans pb-24">
 
   <!-- ========================================== -->
   <!-- ⭐️ 웹 전용 레이아웃 (인쇄 시 완전히 소멸) ⭐️ -->
   <!-- ========================================== -->
   <div id="web-layout">
 
-    <!-- ⭐️ [최상단 포트폴리오 안내 띠 배너 (럭셔리 레드와인 그라데이션)] ⭐️ -->
-    <div class="bg-red-wine-gradient text-rose-100 text-xs py-2.5 px-6 border-b border-rose-900/40 shadow-xs">
+    <!-- ⭐️ [최상단 포트폴리오 안내 띠 배너: DESIGN.md Top-Nav Eyebrow Ribbon] ⭐️ -->
+    <div class="bg-[#120207]/95 text-[#d4b8c2] text-xs py-2 px-4 sm:px-8 border-b border-[rgba(225,60,95,0.22)]">
       <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-3 text-[11px] sm:text-xs font-mono">
         <div class="flex items-center gap-2">
-          <span class="w-2 h-2 rounded-full bg-rose-400 ring-4 ring-rose-400/20"></span>
+          <span class="w-2 h-2 rounded-full bg-[#00ca8e] ring-4 ring-[#00ca8e]/20"></span>
           <span class="font-bold text-white tracking-wider">SPATIAL DESIGN &amp; INTERIOR ARCHITECTURE</span>
         </div>
         <div class="flex items-center gap-3">
-          <span class="text-rose-200/80">신입 실내건축 디자이너 입사지원 공식 포트폴리오</span>
+          <span class="text-[#d4b8c2]">신입 실내건축 디자이너 입사지원 공식 포트폴리오</span>
         </div>
       </div>
     </div>
 
-    <!-- Header (다크 와인 글래스 하이엔드 아키텍처 헤더) -->
-    <header class="dark-wine-header py-2.5 sm:py-3.5 sticky top-0 z-40 transition-all duration-300">
+    <!-- Header (DESIGN.md Top-Nav: 64px, Surface Black with 1px Hairline) -->
+    <header class="bg-[#120207]/88 backdrop-blur-md py-3 sticky top-0 z-40 border-b border-[rgba(225,60,95,0.22)] transition-all duration-300">
       <div class="max-w-7xl mx-auto px-4 sm:px-8 flex items-center justify-between gap-2">
         <div class="flex flex-col shrink-0">
-          <a href="#" class="group flex items-center gap-2 sm:gap-3">
-            <span class="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-rose-400 ring-4 ring-rose-400/25"></span>
+          <a href="#" class="group flex items-center gap-2.5">
+            <span class="w-2.5 h-2.5 rounded-full bg-[#ffcf25] ring-4 ring-[#ffcf25]/20"></span>
             <div>
-              <span class="font-black tracking-tight text-white text-base sm:text-xl font-display uppercase group-hover:text-amber-300 transition-colors">PORTFOLIO</span>
-              <span class="text-[9px] sm:text-[10px] font-mono tracking-widest text-rose-300/80 uppercase block -mt-1 hidden xs:block">Selected Works</span>
+              <span class="font-bold tracking-tight text-white text-base sm:text-xl font-display uppercase group-hover:text-[#ffcf25] transition-colors">PORTFOLIO</span>
+              <span class="text-[9px] sm:text-[10px] font-mono tracking-widest text-[#8a6574] uppercase block -mt-1 hidden xs:block">Selected Works</span>
             </div>
           </a>
-          <span class="text-[9px] font-mono tracking-[0.2em] text-rose-400/60 uppercase mt-0.5 hidden sm:block">Junior Interior Architect Portfolio</span>
+          <span class="text-[9px] font-mono tracking-[0.2em] text-[#8a6574] uppercase mt-0.5 hidden sm:block">Junior Interior Architect Portfolio</span>
         </div>
 
         <nav class="flex items-center gap-2 sm:gap-6">
-          <a href="#portfolio" class="text-xs font-mono text-rose-200/80 hover:text-white transition-colors hidden md:block">
+          <a href="#portfolio" class="text-xs font-mono text-[#d4b8c2] hover:text-white transition-colors hidden md:block">
             핵심 프로젝트 보기
           </a>
-          <a href="#designer-profile" class="text-xs font-mono text-rose-200/80 hover:text-white transition-colors hidden md:block">
+          <a href="#designer-profile" class="text-xs font-mono text-[#d4b8c2] hover:text-white transition-colors hidden md:block">
             지원자 프로필 (PROFILE)
           </a>
 
           <!-- 관리자 전용 편집 모드 제어 버튼 군 -->
-          <div class="editor-only flex items-center gap-1.5 bg-[#23050f]/80 p-1 rounded-full border border-rose-900/60">
+          <div class="editor-only flex items-center gap-1.5 bg-[#1a050e] p-1 rounded-lg border border-[rgba(225,60,95,0.25)]">
             <button 
               type="button" 
               onclick="openResumeModal('landing')"
-              class="editor-only capsule-pill px-3.5 py-2 bg-[#300816] hover:bg-rose-900 text-rose-200 border border-rose-800/60 text-xs font-mono font-bold transition-all flex items-center gap-1.5 shadow-2xs cursor-pointer"
+              class="editor-only hashi-btn-secondary px-3 py-1.5 text-xs font-mono font-bold"
               title="대문(홈) 상단 배지, 메인 슬로건 및 소개글을 직접 수정합니다"
             >
               <span>🏠 대문 문구</span>
@@ -450,7 +520,7 @@
             <button 
               type="button" 
               onclick="openResumeModal('resume')"
-              class="editor-only capsule-pill px-3.5 py-2 bg-[#300816] hover:bg-rose-900 text-rose-200 border border-rose-800/60 text-xs font-mono font-bold transition-all flex items-center gap-1.5 shadow-2xs cursor-pointer"
+              class="editor-only hashi-btn-secondary px-3 py-1.5 text-xs font-mono font-bold"
               title="이력서·자소서 팝업을 열어 인적사항, 학력, 자격증, 소프트웨어 역량 및 자기소개서를 직접 수정합니다"
             >
               <span>✏️ 서류 수정</span>
@@ -460,13 +530,13 @@
           <div class="flex items-center gap-1.5 sm:gap-2">
             <button 
               onclick="generatePDF('resume')"
-              class="hidden sm:flex capsule-pill dark-glass-btn px-4 py-2 text-rose-100 text-xs font-semibold uppercase tracking-wider items-center gap-1.5 cursor-pointer"
+              class="hidden sm:inline-flex hashi-btn-secondary px-3.5 py-1.5 text-xs font-mono"
             >
               <span>📄 이력서·자소서</span>
             </button>
             <button 
               onclick="generatePDF('portfolio')"
-              class="capsule-pill red-wine-btn px-2.5 sm:px-4.5 py-1.5 sm:py-2 text-white text-[11px] sm:text-xs font-semibold uppercase tracking-wider transition-all shadow-sm flex items-center gap-1 cursor-pointer shrink-0"
+              class="hashi-btn-primary px-3.5 py-1.5 text-xs font-mono shrink-0"
             >
               <span>📥 <span class="hidden sm:inline">포트폴리오 </span>다운로드</span>
             </button>
@@ -475,26 +545,27 @@
       </div>
     </header>
 
-    <!-- 🏛️ [선택 A: 웅장한 하이엔드 다크 와인 대문 (Hero Section)] 🏛️ -->
-    <section class="relative hero-dark-wine overflow-hidden border-b border-rose-950/80 pt-12 sm:pt-16 pb-16 sm:pb-20">
-      <!-- 엠비언트 백드롭 라이트 (완전 격리 클리핑) -->
+    <!-- 🏛️ [DESIGN.md Dark Canvas & Chromatic Accent Hero Section] 🏛️ -->
+    <section class="relative bg-transparent overflow-hidden border-b border-[rgba(225,60,95,0.22)] pt-12 sm:pt-16 pb-16 sm:pb-20">
+      <!-- 엠비언트 백드롭 라이트 & 도트 그리드 -->
       <div class="absolute inset-0 overflow-hidden pointer-events-none">
-        <div class="absolute -top-32 -right-20 w-[600px] h-[600px] rounded-full bg-rose-600/15 blur-[120px]"></div>
-        <div class="absolute -bottom-40 -left-20 w-[500px] h-[500px] rounded-full bg-amber-500/10 blur-[100px]"></div>
+        <div class="absolute -top-32 -right-20 w-[650px] h-[650px] rounded-full bg-[#7b42bc]/16 blur-[140px]"></div>
+        <div class="absolute -bottom-40 -left-20 w-[550px] h-[550px] rounded-full bg-[#e62b1e]/18 blur-[130px]"></div>
+        <div class="absolute inset-0 bg-[radial-gradient(rgba(244,208,155,0.06)_1px,transparent_1px)] [background-size:24px_24px]"></div>
       </div>
 
       <div class="relative max-w-7xl mx-auto px-6 sm:px-8 space-y-10 sm:space-y-12">
-        <!-- 1. 아키텍처 테크니컬 리본 바 (Technical Ribbon) -->
-        <div class="flex flex-wrap items-center justify-between gap-3 text-[10.5px] sm:text-xs font-mono text-rose-300/70 border-b border-rose-950/70 pb-3">
+        <!-- 1. 아키텍처 테크니컬 리본 바 (DESIGN.md Eyebrow Ribbon) -->
+        <div class="flex flex-wrap items-center justify-between gap-3 text-[10.5px] sm:text-xs font-mono text-[#b2b6bd] border-b border-[#1f232b] pb-3">
           <div class="flex items-center gap-2.5">
-            <span class="px-2.5 py-0.5 rounded-full hero-wine-badge font-bold tracking-wider text-[10px] shadow-2xs">ATELIER ARCHIVE</span>
-            <span class="tracking-widest uppercase font-semibold text-rose-200">EDITION // 2026</span>
-            <span class="text-rose-500/40">·</span>
-            <span class="tracking-wider text-rose-300/60 hidden sm:inline">LAT 37°33'N · LON 126°58'E</span>
+            <span class="px-2.5 py-0.5 rounded-full bg-[#15181e] border border-[#3b3d45] text-white font-bold tracking-wider text-[10px]">ATELIER ARCHIVE</span>
+            <span class="tracking-widest uppercase font-semibold text-white">EDITION // 2026</span>
+            <span class="text-[#656a76]">·</span>
+            <span class="tracking-wider text-[#656a76] hidden sm:inline">LAT 37°33'N · LON 126°58'E</span>
           </div>
           <div class="flex items-center gap-3">
-            <span class="text-rose-200/80 font-medium">BIM &amp; SPATIAL ARCHITECTURE SPEC SHEET</span>
-            <span class="w-1.5 h-1.5 rounded-full bg-amber-400 animate-ping"></span>
+            <span class="text-[#b2b6bd] font-medium">BIM &amp; SPATIAL ARCHITECTURE SPEC SHEET</span>
+            <span class="w-1.5 h-1.5 rounded-full bg-[#ffcf25] animate-ping"></span>
           </div>
         </div>
 
@@ -502,34 +573,34 @@
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
           <!-- 좌측 컬럼: 대형 아키텍처 타이포그래피 & 핵심 소개 & 액션 버튼 -->
           <div class="lg:col-span-8 space-y-6 sm:space-y-7">
-            <div id="web-hero-badge" class="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full hero-wine-badge text-[11px] sm:text-xs tracking-wider uppercase font-mono font-semibold shadow-md">
-              <span class="w-2 h-2 rounded-full bg-rose-400 ring-4 ring-rose-400/30 animate-pulse"></span>
+            <div id="web-hero-badge" class="hashi-pill">
+              <span class="w-2 h-2 rounded-full bg-[#00ca8e] ring-4 ring-[#00ca8e]/20 animate-pulse"></span>
               <span>Junior Spatial Designer &amp; VMD Portfolio</span>
             </div>
 
             <div class="space-y-2">
-              <span class="text-xs sm:text-sm font-mono tracking-[0.3em] uppercase text-amber-300 font-bold block">
+              <span class="text-xs sm:text-sm font-mono tracking-[0.25em] uppercase text-[#ffcf25] font-bold block">
                 Spatial Architecture · Precision BIM · VMD Direction
               </span>
-              <h1 class="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight text-white leading-[1.08] font-display">
+              <h1 class="text-4xl sm:text-6xl lg:text-7xl font-bold tracking-[-1.8px] text-white leading-[1.14] font-display">
                 <span id="web-hero-title1">정밀한 설계의 질서 위에,</span> <br />
-                <span id="web-hero-title2" class="font-editorial italic font-normal text-amber-200/95">브랜드의 입체적 경험을 완성합니다.</span>
+                <span id="web-hero-title2" class="font-editorial italic font-normal text-[#fbeabf]">브랜드의 입체적 경험을 완성합니다.</span>
               </h1>
             </div>
 
-            <div class="border-l-2 border-amber-400/70 pl-4 sm:pl-5 py-1">
-              <p id="web-hero-desc" class="text-rose-100/90 text-base sm:text-lg font-light leading-relaxed whitespace-pre-line font-sans">
+            <div class="border-l-2 border-[#ffcf25]/80 pl-4 sm:pl-5 py-1">
+              <p id="web-hero-desc" class="text-[#b2b6bd] text-base sm:text-lg font-normal leading-relaxed whitespace-pre-line font-sans">
                 신입 실내건축 · 공간 디자이너 및 VMD 지원자 KD박정호입니다.
                 정밀한 2D 실시설계와 3D 공간 시각화, 브랜드의 입체적 경험을 완성하는 공간 디자인 포트폴리오를 확인하세요.
-                <span class="block mt-2 text-xs font-mono text-amber-300/80 font-medium">※ 현재 대표 프로젝트 본 작품을 준비 중이며, 사이트에 수록된 도면 및 렌더링은 포트폴리오 시스템 구성을 위한 샘플 이미지입니다.</span>
+                <span class="block mt-2 text-xs font-mono text-[#ffcf25]/80 font-medium">※ 현재 대표 프로젝트 본 작품을 준비 중이며, 사이트에 수록된 도면 및 렌더링은 포트폴리오 시스템 구성을 위한 샘플 이미지입니다.</span>
               </p>
             </div>
 
-            <!-- 신입 서류 제출 핵심 액션 버튼 -->
+            <!-- 신입 서류 제출 핵심 액션 버튼 (DESIGN.md 8px CTA 규격) -->
             <div class="pt-2 flex flex-wrap items-center gap-3">
               <a
                 href="#portfolio"
-                class="capsule-pill gold-glow-btn px-6 py-3.5 text-xs font-bold tracking-widest uppercase transition-all inline-flex items-center gap-2 group cursor-pointer"
+                class="hashi-btn-primary px-6 py-3 text-xs tracking-wider uppercase group"
               >
                 <span>프로젝트 보기</span>
                 <span class="group-hover:translate-y-0.5 transition-transform">↓</span>
@@ -537,7 +608,7 @@
 
               <button
                 onclick="openResumeModal('landing')"
-                class="editor-only capsule-pill px-5 py-3.5 bg-[#250510]/80 hover:bg-rose-950 text-rose-200 border border-rose-800/60 text-xs font-bold tracking-wider uppercase transition-all inline-flex items-center gap-2 shadow-sm cursor-pointer"
+                class="editor-only hashi-btn-secondary px-5 py-3 text-xs tracking-wider uppercase"
                 title="대문(홈) 상단 배지, 메인 슬로건 및 소개글을 직접 수정합니다"
               >
                 <span>🏠 대문 문구 직접 수정</span>
@@ -545,7 +616,7 @@
               
               <button
                 onclick="openResumeModal('resume')"
-                class="editor-only capsule-pill px-5 py-3.5 bg-amber-400 hover:bg-amber-300 text-stone-950 text-xs font-bold tracking-wider uppercase transition-all inline-flex items-center gap-2 shadow-sm border border-stone-900 cursor-pointer"
+                class="editor-only hashi-btn-secondary px-5 py-3 text-xs tracking-wider uppercase border-[#ffcf25]/60 text-[#ffcf25]"
                 title="이력서와 자기소개서 세부 내용을 실시간으로 직접 수정합니다"
               >
                 <span>✏️ 이력서·자소서 직접 수정</span>
@@ -553,58 +624,58 @@
 
               <button
                 onclick="generatePDF('resume')"
-                class="capsule-pill dark-glass-btn px-6 py-3.5 text-xs font-bold tracking-wider uppercase transition-all inline-flex items-center gap-2 cursor-pointer"
+                class="hashi-btn-secondary px-5 py-3 text-xs tracking-wider uppercase"
               >
                 <span>📄 이력서 &amp; 자기소개서 다운로드</span>
               </button>
 
               <button
                 onclick="generatePDF('portfolio')"
-                class="capsule-pill dark-glass-btn px-6 py-3.5 text-xs font-bold tracking-wider uppercase transition-all inline-flex items-center gap-2 cursor-pointer"
+                class="hashi-btn-secondary px-5 py-3 text-xs tracking-wider uppercase"
               >
                 <span>📥 포트폴리오 북 다운로드</span>
               </button>
             </div>
           </div>
 
-          <!-- 우측 컬럼: 하이엔드 아키텍처 스펙 패스포트 카드 (Floating Spec Card) -->
+          <!-- 우측 컬럼: 하이엔드 아키텍처 스펙 패스포트 카드 (DESIGN.md Surface-1 Card) -->
           <div class="lg:col-span-4 w-full">
-            <div class="dark-wine-card rounded-3xl p-6 sm:p-7 shadow-2xl space-y-5 relative overflow-hidden group transition-all duration-300">
+            <div class="hashi-card p-6 sm:p-7 space-y-5 relative overflow-hidden group">
               <!-- 모서리 아키텍처 크로스헤어 데코 -->
-              <span class="absolute top-3 right-3 text-rose-500/40 font-mono text-xs select-none">+</span>
-              <span class="absolute bottom-3 left-3 text-rose-500/40 font-mono text-xs select-none">+</span>
+              <span class="absolute top-3 right-3 text-[#656a76] font-mono text-xs select-none">+</span>
+              <span class="absolute bottom-3 left-3 text-[#656a76] font-mono text-xs select-none">+</span>
 
-              <div class="flex items-center justify-between border-b border-rose-950/70 pb-3">
-                <span class="text-[11px] font-mono uppercase tracking-widest text-amber-300/80 font-bold">ATELIER SPECIFICATION // 01</span>
-                <span class="text-[10px] font-mono px-2 py-0.5 rounded-full bg-emerald-950/80 text-emerald-300 border border-emerald-600/50 font-bold">VERIFIED</span>
+              <div class="flex items-center justify-between border-b border-[#1f232b] pb-3">
+                <span class="text-[11px] font-mono uppercase tracking-widest text-[#ffcf25] font-bold">ATELIER SPECIFICATION // 01</span>
+                <span class="text-[10px] font-mono px-2 py-0.5 rounded-full bg-[#00ca8e]/15 text-[#00ca8e] border border-[#00ca8e]/40 font-bold">VERIFIED</span>
               </div>
 
               <!-- 스펙 데이터 그리드 -->
               <div class="space-y-3 font-mono text-xs">
-                <div class="flex justify-between items-center py-1 border-b border-rose-950/70">
-                  <span class="text-rose-300/70">CANDIDATE</span>
-                  <span class="font-bold text-white font-sans text-sm">KD박정호 <span class="text-xs text-rose-300/80 font-normal">(신입)</span></span>
+                <div class="flex justify-between items-center py-1 border-b border-[#1f232b]">
+                  <span class="text-[#656a76]">CANDIDATE</span>
+                  <span class="font-bold text-white font-sans text-sm"><span id="web-hero-candidate-name">KD박정호</span> <span class="text-xs text-[#b2b6bd] font-normal">(신입)</span></span>
                 </div>
-                <div class="flex justify-between items-center py-1 border-b border-rose-950/70">
-                  <span class="text-rose-300/70">DISCIPLINE</span>
-                  <span class="font-semibold text-rose-100">실내건축 · 공간 VMD</span>
+                <div class="flex justify-between items-center py-1 border-b border-[#1f232b]">
+                  <span class="text-[#656a76]">DISCIPLINE</span>
+                  <span id="web-hero-discipline" class="font-semibold text-white">실내건축 · 공간 VMD</span>
                 </div>
-                <div class="flex justify-between items-center py-1 border-b border-rose-950/70">
-                  <span class="text-rose-300/70">CREDENTIALS</span>
-                  <span class="font-bold text-amber-200 bg-amber-950/60 px-2 py-0.5 rounded-full border border-amber-500/50 text-[11px]">7종 국가자격 보유</span>
+                <div class="flex justify-between items-center py-1 border-b border-[#1f232b]">
+                  <span class="text-[#656a76]">CREDENTIALS</span>
+                  <span class="font-bold text-[#ffcf25] bg-[#ffcf25]/10 px-2 py-0.5 rounded-full border border-[#ffcf25]/30 text-[11px]">7종 국가자격 보유</span>
                 </div>
-                <div class="flex justify-between items-start py-1 border-b border-rose-950/70">
-                  <span class="text-rose-300/70 shrink-0">CORE TOOLS</span>
-                  <span class="font-medium text-stone-200 text-right text-[11px] leading-relaxed">AutoCAD · Revit · 3ds Max<br />SketchUp · D5 · Enscape</span>
+                <div class="flex justify-between items-start py-1 border-b border-[#1f232b]">
+                  <span class="text-[#656a76] shrink-0">CORE TOOLS</span>
+                  <span class="font-medium text-[#b2b6bd] text-right text-[11px] leading-relaxed">AutoCAD · Revit · 3ds Max<br />SketchUp · D5 · Enscape</span>
                 </div>
                 <div class="flex justify-between items-center py-1">
-                  <span class="text-rose-300/70">CONTACT</span>
-                  <span class="font-bold text-amber-300 tracking-tight">031-846-5888</span>
+                  <span class="text-[#656a76]">CONTACT</span>
+                  <span id="web-hero-contact" class="font-bold text-[#ffcf25] tracking-tight">031-846-5888</span>
                 </div>
               </div>
 
               <div class="pt-2">
-                <a href="#designer-profile" class="w-full py-2.5 px-4 rounded-full bg-[#2a0612]/90 hover:bg-amber-400 hover:text-stone-950 text-rose-200 border border-rose-800/60 text-xs font-mono font-semibold transition-all flex items-center justify-between group/link">
+                <a href="#designer-profile" class="hashi-btn-secondary w-full justify-between group/link">
                   <span>지원자 상세 프로필 보기</span>
                   <span class="group-hover/link:translate-x-1 transition-transform">→</span>
                 </a>
@@ -613,48 +684,48 @@
           </div>
         </div>
 
-        <!-- 3. 아키텍처 3대 핵심 역량 지표 리본 (3-Pillar Capability Ribbon) -->
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 pt-4 border-t border-rose-950/70">
-          <div class="dark-wine-card p-4 sm:p-5 rounded-2xl space-y-1.5 shadow-md">
-            <div class="flex items-center gap-2 text-xs font-mono text-amber-300 font-bold">
+        <!-- 3. 아키텍처 3대 핵심 역량 지표 리본 (DESIGN.md 3-Pillar Capability Grid) -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 pt-4 border-t border-[#1f232b]">
+          <div class="hashi-card p-5 space-y-2">
+            <div class="flex items-center gap-2 text-xs font-mono text-[#ffcf25] font-bold">
               <span>01 / DRAFTING FIDELITY</span>
             </div>
             <h3 class="text-sm font-bold text-white font-sans">국가표준 2D CAD 4대 도면</h3>
-            <p class="text-xs text-rose-200/80 font-light leading-relaxed">평면도, 천장도, 입면도, 상세도 등 시공 현장과 일치하는 정밀 실시도면 체계</p>
+            <p class="text-xs text-[#b2b6bd] font-normal leading-relaxed">평면도, 천장도, 입면도, 상세도 등 시공 현장과 일치하는 정밀 실시도면 체계</p>
           </div>
 
-          <div class="dark-wine-card p-4 sm:p-5 rounded-2xl space-y-1.5 shadow-md">
-            <div class="flex items-center gap-2 text-xs font-mono text-amber-300 font-bold">
+          <div class="hashi-card p-5 space-y-2">
+            <div class="flex items-center gap-2 text-xs font-mono text-[#14c6cb] font-bold">
               <span>02 / 3D HYPER-REALISM</span>
             </div>
             <h3 class="text-sm font-bold text-white font-sans">Revit BIM &amp; D5 레이트레이싱</h3>
-            <p class="text-xs text-rose-200/80 font-light leading-relaxed">질감, 반사광, 간접조명을 정밀 시뮬레이션하는 실시간 하이퍼리얼 렌더링</p>
+            <p class="text-xs text-[#b2b6bd] font-normal leading-relaxed">질감, 반사광, 간접조명을 정밀 시뮬레이션하는 실시간 하이퍼리얼 렌더링</p>
           </div>
 
-          <div class="dark-wine-card p-4 sm:p-5 rounded-2xl space-y-1.5 shadow-md">
-            <div class="flex items-center gap-2 text-xs font-mono text-amber-300 font-bold">
+          <div class="hashi-card p-5 space-y-2">
+            <div class="flex items-center gap-2 text-xs font-mono text-[#e62b1e] font-bold">
               <span>03 / SPATIAL BRANDING</span>
             </div>
             <h3 class="text-sm font-bold text-white font-sans">상업 공간 VMD &amp; 디스플레이</h3>
-            <p class="text-xs text-rose-200/80 font-light leading-relaxed">브랜드의 철학과 고객 체류 동선을 입체적으로 기획하는 공간 연출력</p>
+            <p class="text-xs text-[#b2b6bd] font-normal leading-relaxed">브랜드의 철학과 고객 체류 동선을 입체적으로 기획하는 공간 연출력</p>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- 프로젝트 대형 쇼케이스 -->
-    <section id="portfolio" class="py-24 bg-stone-100/60 border-t border-stone-200 relative">
+    <!-- 프로젝트 대형 쇼케이스 (DESIGN.md Surface System) -->
+    <section id="portfolio" class="py-24 bg-transparent border-t border-[rgba(225,60,95,0.22)] relative">
       <div class="max-w-7xl mx-auto px-6 sm:px-8 space-y-12">
-        <div class="border-b border-stone-300/80 pb-6 flex flex-col md:flex-row md:items-end justify-between gap-6">
+        <div class="border-b border-[rgba(225,60,95,0.22)] pb-6 flex flex-col md:flex-row md:items-end justify-between gap-6">
           <div class="space-y-2">
-            <div class="flex items-center gap-2 text-xs font-mono tracking-widest text-amber-800 uppercase">
-              <span class="w-2 h-0.5 bg-amber-700"></span>
+            <div class="flex items-center gap-2 text-xs font-mono tracking-widest text-[#ffcf25] uppercase">
+              <span class="w-2 h-0.5 bg-[#ffcf25]"></span>
               <span id="web-portfolio-badge">PROJECT ARCHIVE // EDITION 2026</span>
             </div>
-            <h2 id="portfolio-section-title" class="text-3xl sm:text-5xl font-extrabold tracking-tight text-stone-950 font-display">
+            <h2 id="portfolio-section-title" class="text-3xl sm:text-5xl font-bold tracking-tight text-white font-display">
               Selected Masterpieces
             </h2>
-            <p class="text-xs sm:text-sm text-stone-500 font-sans font-light">
+            <p class="text-xs sm:text-sm text-[#d4b8c2] font-sans font-normal">
               실무 즉시 투입 가능한 정밀 2D 실시설계 도면 세트와 실시간 하이퍼리얼 3D 렌더링 아카이브
             </p>
           </div>
@@ -662,7 +733,7 @@
             <button 
               type="button"
               onclick="addNewProject()"
-              class="editor-only capsule-pill px-4 py-2.5 bg-stone-900 hover:bg-stone-800 text-amber-300 hover:text-white border border-stone-900 text-xs font-mono font-bold transition-all flex items-center gap-1.5 shadow-sm cursor-pointer"
+              class="editor-only hashi-btn-primary px-4 py-2 text-xs font-mono font-bold"
               title="새로운 프로젝트를 포트폴리오에 추가합니다"
             >
               <span>➕</span>
@@ -671,15 +742,15 @@
             <button 
               type="button"
               onclick="openProjectOrderModal()"
-              class="editor-only capsule-pill px-4 py-2.5 bg-white hover:bg-stone-900 hover:text-white border border-stone-300 text-stone-950 text-xs font-mono font-bold transition-all flex items-center gap-2 shadow-sm cursor-pointer group"
+              class="editor-only hashi-btn-secondary px-4 py-2 text-xs font-mono font-bold group"
               title="프로젝트 노출 순서를 자유롭게 변경하고 관리합니다"
             >
               <span class="text-base group-hover:rotate-180 transition-transform duration-300">⇅</span>
               <span>순서 변경 / 관리</span>
-              <span class="bg-amber-400 text-stone-950 text-[10px] px-2 py-0.5 rounded-full font-mono font-black shadow-2xs">자율 설정</span>
+              <span class="bg-[#ffcf25] text-black text-[10px] px-2 py-0.5 rounded-full font-mono font-bold ml-1">자율 설정</span>
             </button>
-            <p id="portfolio-categories-summary" class="text-xs text-stone-500 font-mono hidden xl:block">
-              <strong class="text-stone-700">포트폴리오 구성</strong>: 뷰티&amp;헤어살롱(1) · 주거(1) · 업무(1) · 맞춤가구(1)
+            <p id="portfolio-categories-summary" class="text-xs text-[#8a6574] font-mono hidden xl:block">
+              <strong class="text-[#d4b8c2]">포트폴리오 구성</strong>: 뷰티&amp;헤어살롱(1) · 주거(1) · 업무(1) · 맞춤가구(1)
             </p>
           </div>
         </div>
@@ -690,30 +761,30 @@
       </div>
     </section>
 
-    <!-- 신입 디자이너 프로필 & 서류 다운로드 섹션 -->
-    <section id="designer-profile" class="py-24 bg-white border-t border-b border-stone-200 relative">
+    <!-- 신입 디자이너 프로필 & 서류 다운로드 섹션 (DESIGN.md Surface System) -->
+    <section id="designer-profile" class="py-24 bg-transparent border-t border-[rgba(225,60,95,0.22)] relative">
       <div class="max-w-7xl mx-auto px-6 sm:px-8 space-y-12">
         <!-- 섹션 헤더 -->
-        <div class="space-y-2 border-b border-stone-200 pb-6">
-          <div class="flex items-center gap-2 text-xs font-mono tracking-widest text-amber-800 uppercase">
-            <span class="w-2 h-0.5 bg-amber-700"></span>
+        <div class="space-y-2 border-b border-[rgba(225,60,95,0.22)] pb-6">
+          <div class="flex items-center gap-2 text-xs font-mono tracking-widest text-[#ffcf25] uppercase">
+            <span class="w-2 h-0.5 bg-[#ffcf25]"></span>
             <span>ATELIER SPECIFICATION // CANDIDATE PROFILE</span>
           </div>
           <div class="flex flex-col sm:flex-row sm:items-baseline justify-between gap-3">
-            <h2 id="web-profile-name" class="text-3xl sm:text-5xl font-extrabold tracking-tight text-stone-950 font-display break-keep">
-              KD박정호 <span id="web-profile-title" class="text-sm sm:text-base font-normal text-stone-500 font-sans block sm:inline mt-1 sm:mt-0">| 신입 실내건축 · 공간 디자이너 / VMD</span>
+            <h2 id="web-profile-name" class="text-3xl sm:text-5xl font-bold tracking-tight text-white font-display break-keep">
+              KD박정호 <span id="web-profile-title" class="text-sm sm:text-base font-normal text-[#b2b6bd] font-sans block sm:inline mt-1 sm:mt-0">| 신입 실내건축 · 공간 디자이너 / VMD</span>
             </h2>
-            <span class="text-xs font-mono text-stone-500">RESUME &amp; QUALIFICATION SPEC</span>
+            <span class="text-xs font-mono text-[#656a76]">RESUME &amp; QUALIFICATION SPEC</span>
           </div>
         </div>
 
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
           <!-- 좌측: 소개문 & 12종 소프트웨어 스펙 매트릭스 -->
           <div class="lg:col-span-7 space-y-8">
-            <!-- 철학 소개문 -->
-            <div class="bg-stone-50/70 p-6 rounded-2xl border border-stone-200/80 space-y-2">
-              <span class="text-[11px] font-mono uppercase tracking-widest text-amber-800 font-bold block">DESIGN STATEMENT</span>
-              <p id="web-profile-intro" class="text-stone-800 text-sm sm:text-base font-light leading-relaxed break-keep border-l-2 border-amber-600/60 pl-4 py-1">
+            <!-- 철학 소개문 (DESIGN.md Surface-1 Card) -->
+            <div class="hashi-card p-6 rounded-xl space-y-2">
+              <span class="text-[11px] font-mono uppercase tracking-widest text-[#ffcf25] font-bold block">DESIGN STATEMENT</span>
+              <p id="web-profile-intro" class="text-[#b2b6bd] text-sm sm:text-base font-normal leading-relaxed break-keep border-l-2 border-[#14c6cb] pl-4 py-1">
                 “정밀한 설계의 질서 위에, 브랜드의 입체적 경험을 완성합니다.
                 스케치업 모델링과 D5 Render를 통한 감각적인 시각화, 그리고 AutoCAD를 이용한 정밀 실시설계와 VMD 연출이 가능합니다.”
               </p>
@@ -722,149 +793,149 @@
             <!-- 소프트웨어 역량 매트릭스 -->
             <div class="space-y-4">
               <div class="flex items-center justify-between">
-                <span class="text-xs font-mono font-bold text-stone-900 uppercase tracking-wider flex items-center gap-2">
-                  <span class="w-1.5 h-1.5 rounded-full bg-amber-600"></span>
+                <span class="text-xs font-mono font-bold text-white uppercase tracking-wider flex items-center gap-2">
+                  <span class="w-1.5 h-1.5 rounded-full bg-[#14c6cb]"></span>
                   Software Proficiency (12 Specialist Tools)
                 </span>
-                <span class="text-[11px] font-mono text-stone-400">최상(5) · 상(7)</span>
+                <span class="text-[11px] font-mono text-[#656a76]">최상(5) · 상(7)</span>
               </div>
 
               <div id="web-profile-software" class="grid grid-cols-2 sm:grid-cols-3 gap-3 text-xs">
-                <div class="bg-white p-3 rounded-2xl border border-stone-200 shadow-2xs hover:border-amber-600/40 hover:shadow-xs transition-all">
-                  <div class="flex justify-between items-center font-mono mb-1.5"><span class="font-medium text-stone-900">AutoCAD</span><span class="font-bold text-amber-950 bg-amber-100/90 border border-amber-400 px-2 py-0.5 rounded-full text-[11px]">최상</span></div>
-                  <div class="w-full bg-stone-100 h-1.5 rounded-full overflow-hidden"><div class="red-wine-bar h-1.5 rounded-full" style="width: 98%"></div></div>
+                <div class="hashi-card p-3 rounded-lg">
+                  <div class="flex justify-between items-center font-mono mb-1.5"><span class="font-medium text-white">AutoCAD</span><span class="font-bold text-[#ffcf25] bg-[#ffcf25]/10 border border-[#ffcf25]/30 px-2 py-0.5 rounded-full text-[11px]">최상</span></div>
+                  <div class="w-full bg-[#1f232b] h-1.5 rounded-full overflow-hidden"><div class="bg-gradient-to-r from-[#2b89ff] to-[#14c6cb] h-1.5 rounded-full" style="width: 98%"></div></div>
                 </div>
-                <div class="bg-white p-3 rounded-2xl border border-stone-200 shadow-2xs hover:border-amber-600/40 hover:shadow-xs transition-all">
-                  <div class="flex justify-between items-center font-mono mb-1.5"><span class="font-medium text-stone-900">SketchUp</span><span class="font-bold text-amber-950 bg-amber-100/90 border border-amber-400 px-2 py-0.5 rounded-full text-[11px]">최상</span></div>
-                  <div class="w-full bg-stone-100 h-1.5 rounded-full overflow-hidden"><div class="red-wine-bar h-1.5 rounded-full" style="width: 95%"></div></div>
+                <div class="hashi-card p-3 rounded-lg">
+                  <div class="flex justify-between items-center font-mono mb-1.5"><span class="font-medium text-white">SketchUp</span><span class="font-bold text-[#ffcf25] bg-[#ffcf25]/10 border border-[#ffcf25]/30 px-2 py-0.5 rounded-full text-[11px]">최상</span></div>
+                  <div class="w-full bg-[#1f232b] h-1.5 rounded-full overflow-hidden"><div class="bg-gradient-to-r from-[#2b89ff] to-[#14c6cb] h-1.5 rounded-full" style="width: 95%"></div></div>
                 </div>
-                <div class="bg-white p-3 rounded-2xl border border-stone-200 shadow-2xs hover:border-amber-600/40 hover:shadow-xs transition-all">
-                  <div class="flex justify-between items-center font-mono mb-1.5"><span class="font-medium text-stone-900">Revit (BIM)</span><span class="font-bold text-amber-950 bg-amber-100/90 border border-amber-400 px-2 py-0.5 rounded-full text-[11px]">최상</span></div>
-                  <div class="w-full bg-stone-100 h-1.5 rounded-full overflow-hidden"><div class="red-wine-bar h-1.5 rounded-full" style="width: 95%"></div></div>
+                <div class="hashi-card p-3 rounded-lg">
+                  <div class="flex justify-between items-center font-mono mb-1.5"><span class="font-medium text-white">Revit (BIM)</span><span class="font-bold text-[#ffcf25] bg-[#ffcf25]/10 border border-[#ffcf25]/30 px-2 py-0.5 rounded-full text-[11px]">최상</span></div>
+                  <div class="w-full bg-[#1f232b] h-1.5 rounded-full overflow-hidden"><div class="bg-gradient-to-r from-[#2b89ff] to-[#14c6cb] h-1.5 rounded-full" style="width: 95%"></div></div>
                 </div>
-                <div class="bg-white p-3 rounded-2xl border border-stone-200 shadow-2xs hover:border-amber-600/40 hover:shadow-xs transition-all">
-                  <div class="flex justify-between items-center font-mono mb-1.5"><span class="font-medium text-stone-900">3ds Max / V-Ray</span><span class="font-bold text-amber-950 bg-amber-100/90 border border-amber-400 px-2 py-0.5 rounded-full text-[11px]">최상</span></div>
-                  <div class="w-full bg-stone-100 h-1.5 rounded-full overflow-hidden"><div class="red-wine-bar h-1.5 rounded-full" style="width: 95%"></div></div>
+                <div class="hashi-card p-3 rounded-lg">
+                  <div class="flex justify-between items-center font-mono mb-1.5"><span class="font-medium text-white">3ds Max / V-Ray</span><span class="font-bold text-[#ffcf25] bg-[#ffcf25]/10 border border-[#ffcf25]/30 px-2 py-0.5 rounded-full text-[11px]">최상</span></div>
+                  <div class="w-full bg-[#1f232b] h-1.5 rounded-full overflow-hidden"><div class="bg-gradient-to-r from-[#2b89ff] to-[#14c6cb] h-1.5 rounded-full" style="width: 95%"></div></div>
                 </div>
-                <div class="bg-white p-3 rounded-2xl border border-stone-200 shadow-2xs hover:border-amber-600/40 hover:shadow-xs transition-all">
-                  <div class="flex justify-between items-center font-mono mb-1.5"><span class="font-medium text-stone-900">Enscape</span><span class="font-bold text-amber-950 bg-amber-100/90 border border-amber-400 px-2 py-0.5 rounded-full text-[11px]">최상</span></div>
-                  <div class="w-full bg-stone-100 h-1.5 rounded-full overflow-hidden"><div class="red-wine-bar h-1.5 rounded-full" style="width: 95%"></div></div>
+                <div class="hashi-card p-3 rounded-lg">
+                  <div class="flex justify-between items-center font-mono mb-1.5"><span class="font-medium text-white">Enscape</span><span class="font-bold text-[#ffcf25] bg-[#ffcf25]/10 border border-[#ffcf25]/30 px-2 py-0.5 rounded-full text-[11px]">최상</span></div>
+                  <div class="w-full bg-[#1f232b] h-1.5 rounded-full overflow-hidden"><div class="bg-gradient-to-r from-[#2b89ff] to-[#14c6cb] h-1.5 rounded-full" style="width: 95%"></div></div>
                 </div>
-                <div class="bg-white p-3 rounded-2xl border border-stone-200 shadow-2xs hover:border-amber-600/40 hover:shadow-xs transition-all">
-                  <div class="flex justify-between items-center font-mono mb-1.5"><span class="font-medium text-stone-900">D5 Render</span><span class="font-bold text-stone-800 bg-stone-100 border border-stone-300 px-2 py-0.5 rounded-full text-[11px]">상</span></div>
-                  <div class="w-full bg-stone-100 h-1.5 rounded-full overflow-hidden"><div class="red-wine-bar h-1.5 rounded-full" style="width: 90%"></div></div>
+                <div class="hashi-card p-3 rounded-lg">
+                  <div class="flex justify-between items-center font-mono mb-1.5"><span class="font-medium text-white">D5 Render</span><span class="font-bold text-[#b2b6bd] bg-[#1f232b] border border-[#3b3d45] px-2 py-0.5 rounded-full text-[11px]">상</span></div>
+                  <div class="w-full bg-[#1f232b] h-1.5 rounded-full overflow-hidden"><div class="bg-gradient-to-r from-[#2b89ff] to-[#14c6cb] h-1.5 rounded-full" style="width: 90%"></div></div>
                 </div>
-                <div class="bg-white p-3 rounded-2xl border border-stone-200 shadow-2xs hover:border-amber-600/40 hover:shadow-xs transition-all">
-                  <div class="flex justify-between items-center font-mono mb-1.5"><span class="font-medium text-stone-900">Twinmotion</span><span class="font-bold text-stone-800 bg-stone-100 border border-stone-300 px-2 py-0.5 rounded-full text-[11px]">상</span></div>
-                  <div class="w-full bg-stone-100 h-1.5 rounded-full overflow-hidden"><div class="red-wine-bar h-1.5 rounded-full" style="width: 90%"></div></div>
+                <div class="hashi-card p-3 rounded-lg">
+                  <div class="flex justify-between items-center font-mono mb-1.5"><span class="font-medium text-white">Twinmotion</span><span class="font-bold text-[#b2b6bd] bg-[#1f232b] border border-[#3b3d45] px-2 py-0.5 rounded-full text-[11px]">상</span></div>
+                  <div class="w-full bg-[#1f232b] h-1.5 rounded-full overflow-hidden"><div class="bg-gradient-to-r from-[#2b89ff] to-[#14c6cb] h-1.5 rounded-full" style="width: 90%"></div></div>
                 </div>
-                <div class="bg-white p-3 rounded-2xl border border-stone-200 shadow-2xs hover:border-amber-600/40 hover:shadow-xs transition-all">
-                  <div class="flex justify-between items-center font-mono mb-1.5"><span class="font-medium text-stone-900">Navisworks</span><span class="font-bold text-stone-800 bg-stone-100 border border-stone-300 px-2 py-0.5 rounded-full text-[11px]">상</span></div>
-                  <div class="w-full bg-stone-100 h-1.5 rounded-full overflow-hidden"><div class="red-wine-bar h-1.5 rounded-full" style="width: 88%"></div></div>
+                <div class="hashi-card p-3 rounded-lg">
+                  <div class="flex justify-between items-center font-mono mb-1.5"><span class="font-medium text-white">Navisworks</span><span class="font-bold text-[#b2b6bd] bg-[#1f232b] border border-[#3b3d45] px-2 py-0.5 rounded-full text-[11px]">상</span></div>
+                  <div class="w-full bg-[#1f232b] h-1.5 rounded-full overflow-hidden"><div class="bg-gradient-to-r from-[#2b89ff] to-[#14c6cb] h-1.5 rounded-full" style="width: 88%"></div></div>
                 </div>
-                <div class="bg-white p-3 rounded-2xl border border-stone-200 shadow-2xs hover:border-amber-600/40 hover:shadow-xs transition-all">
-                  <div class="flex justify-between items-center font-mono mb-1.5"><span class="font-medium text-stone-900">Photoshop</span><span class="font-bold text-stone-800 bg-stone-100 border border-stone-300 px-2 py-0.5 rounded-full text-[11px]">상</span></div>
-                  <div class="w-full bg-stone-100 h-1.5 rounded-full overflow-hidden"><div class="red-wine-bar h-1.5 rounded-full" style="width: 90%"></div></div>
+                <div class="hashi-card p-3 rounded-lg">
+                  <div class="flex justify-between items-center font-mono mb-1.5"><span class="font-medium text-white">Photoshop</span><span class="font-bold text-[#b2b6bd] bg-[#1f232b] border border-[#3b3d45] px-2 py-0.5 rounded-full text-[11px]">상</span></div>
+                  <div class="w-full bg-[#1f232b] h-1.5 rounded-full overflow-hidden"><div class="bg-gradient-to-r from-[#2b89ff] to-[#14c6cb] h-1.5 rounded-full" style="width: 90%"></div></div>
                 </div>
-                <div class="bg-white p-3 rounded-2xl border border-stone-200 shadow-2xs hover:border-amber-600/40 hover:shadow-xs transition-all">
-                  <div class="flex justify-between items-center font-mono mb-1.5"><span class="font-medium text-stone-900">Illustrator</span><span class="font-bold text-stone-800 bg-stone-100 border border-stone-300 px-2 py-0.5 rounded-full text-[11px]">상</span></div>
-                  <div class="w-full bg-stone-100 h-1.5 rounded-full overflow-hidden"><div class="red-wine-bar h-1.5 rounded-full" style="width: 90%"></div></div>
+                <div class="hashi-card p-3 rounded-lg">
+                  <div class="flex justify-between items-center font-mono mb-1.5"><span class="font-medium text-white">Illustrator</span><span class="font-bold text-[#b2b6bd] bg-[#1f232b] border border-[#3b3d45] px-2 py-0.5 rounded-full text-[11px]">상</span></div>
+                  <div class="w-full bg-[#1f232b] h-1.5 rounded-full overflow-hidden"><div class="bg-gradient-to-r from-[#2b89ff] to-[#14c6cb] h-1.5 rounded-full" style="width: 90%"></div></div>
                 </div>
-                <div class="bg-white p-3 rounded-2xl border border-stone-200 shadow-2xs hover:border-amber-600/40 hover:shadow-xs transition-all">
-                  <div class="flex justify-between items-center font-mono mb-1.5"><span class="font-medium text-stone-900">AI 활용 (Generative)</span><span class="font-bold text-stone-800 bg-stone-100 border border-stone-300 px-2 py-0.5 rounded-full text-[11px]">상</span></div>
-                  <div class="w-full bg-stone-100 h-1.5 rounded-full overflow-hidden"><div class="red-wine-bar h-1.5 rounded-full" style="width: 90%"></div></div>
+                <div class="hashi-card p-3 rounded-lg">
+                  <div class="flex justify-between items-center font-mono mb-1.5"><span class="font-medium text-white">AI 활용 (Generative)</span><span class="font-bold text-[#b2b6bd] bg-[#1f232b] border border-[#3b3d45] px-2 py-0.5 rounded-full text-[11px]">상</span></div>
+                  <div class="w-full bg-[#1f232b] h-1.5 rounded-full overflow-hidden"><div class="bg-gradient-to-r from-[#2b89ff] to-[#14c6cb] h-1.5 rounded-full" style="width: 90%"></div></div>
                 </div>
-                <div class="bg-white p-3 rounded-2xl border border-stone-200 shadow-2xs hover:border-amber-600/40 hover:shadow-xs transition-all">
-                  <div class="flex justify-between items-center font-mono mb-1.5"><span class="font-medium text-stone-900">MS Office (컴활1급)</span><span class="font-bold text-stone-800 bg-stone-100 border border-stone-300 px-2 py-0.5 rounded-full text-[11px]">상</span></div>
-                  <div class="w-full bg-stone-100 h-1.5 rounded-full overflow-hidden"><div class="red-wine-bar h-1.5 rounded-full" style="width: 92%"></div></div>
+                <div class="hashi-card p-3 rounded-lg">
+                  <div class="flex justify-between items-center font-mono mb-1.5"><span class="font-medium text-white">MS Office (컴활1급)</span><span class="font-bold text-[#b2b6bd] bg-[#1f232b] border border-[#3b3d45] px-2 py-0.5 rounded-full text-[11px]">상</span></div>
+                  <div class="w-full bg-[#1f232b] h-1.5 rounded-full overflow-hidden"><div class="bg-gradient-to-r from-[#2b89ff] to-[#14c6cb] h-1.5 rounded-full" style="width: 92%"></div></div>
                 </div>
               </div>
             </div>
           </div>
 
           <!-- 우측: 7종 국가기술자격 명예의 전당 & 지원서류 원클릭 다운로드 -->
-          <div class="lg:col-span-5 bg-stone-50/80 backdrop-blur-md p-6 sm:p-8 rounded-3xl border border-stone-200/90 shadow-sm space-y-6">
+          <div class="lg:col-span-5 hashi-card p-6 sm:p-8 rounded-2xl border border-[rgba(225,60,95,0.25)] space-y-6">
             <!-- 7종 국가기술자격 쇼케이스 -->
             <div class="space-y-3">
-              <div class="flex items-center justify-between border-b border-stone-200/80 pb-3">
-                <span class="font-mono text-xs text-amber-800 uppercase font-bold flex items-center gap-1.5">
+              <div class="flex items-center justify-between border-b border-[rgba(225,60,95,0.22)] pb-3">
+                <span class="font-mono text-xs text-[#ffcf25] uppercase font-bold flex items-center gap-1.5">
                   <span>🏛️</span>
                   <span>7 Certified Credentials</span>
                 </span>
-                <span class="text-[10px] font-mono px-2 py-0.5 rounded-full bg-amber-100 text-amber-900 font-bold">국가공인 검증완료</span>
+                <span class="text-[10px] font-mono px-2 py-0.5 rounded-full bg-[#00ca8e]/15 text-[#00ca8e] border border-[#00ca8e]/40 font-bold">국가공인 검증완료</span>
               </div>
               
-              <!-- 7종 자격증 배지 월 -->
+              <!-- 7종 자격증 배지 월 (DESIGN.md Surface-2 Tiles) -->
               <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
-                <div class="p-2.5 bg-white rounded-xl border border-stone-200 shadow-2xs flex items-center gap-2">
+                <div class="p-2.5 bg-[rgba(38,8,20,0.85)] rounded-lg border border-[rgba(225,60,95,0.25)] flex items-center gap-2">
                   <span class="text-base shrink-0">🏛️</span>
                   <div>
-                    <span class="font-bold text-stone-900 block leading-tight">건축기사</span>
-                    <span class="text-[10px] text-stone-400 font-mono">한국산업인력공단</span>
+                    <span class="font-bold text-white block leading-tight">건축기사</span>
+                    <span class="text-[10px] text-[#8a6574] font-mono">한국산업인력공단</span>
                   </div>
                 </div>
-                <div class="p-2.5 bg-white rounded-xl border border-stone-200 shadow-2xs flex items-center gap-2">
+                <div class="p-2.5 bg-[rgba(38,8,20,0.85)] rounded-lg border border-[rgba(225,60,95,0.25)] flex items-center gap-2">
                   <span class="text-base shrink-0">📐</span>
                   <div>
-                    <span class="font-bold text-stone-900 block leading-tight">실내건축기사</span>
-                    <span class="text-[10px] text-stone-400 font-mono">한국산업인력공단</span>
+                    <span class="font-bold text-white block leading-tight">실내건축기사</span>
+                    <span class="text-[10px] text-[#8a6574] font-mono">한국산업인력공단</span>
                   </div>
                 </div>
-                <div class="p-2.5 bg-white rounded-xl border border-stone-200 shadow-2xs flex items-center gap-2">
+                <div class="p-2.5 bg-[rgba(38,8,20,0.85)] rounded-lg border border-[rgba(225,60,95,0.25)] flex items-center gap-2">
                   <span class="text-base shrink-0">🛡️</span>
                   <div>
-                    <span class="font-bold text-stone-900 block leading-tight">산업안전기사</span>
-                    <span class="text-[10px] text-stone-400 font-mono">한국산업인력공단</span>
+                    <span class="font-bold text-white block leading-tight">산업안전기사</span>
+                    <span class="text-[10px] text-[#8a6574] font-mono">한국산업인력공단</span>
                   </div>
                 </div>
-                <div class="p-2.5 bg-white rounded-xl border border-stone-200 shadow-2xs flex items-center gap-2">
+                <div class="p-2.5 bg-[rgba(38,8,20,0.85)] rounded-lg border border-[rgba(225,60,95,0.25)] flex items-center gap-2">
                   <span class="text-base shrink-0">🏗️</span>
                   <div>
-                    <span class="font-bold text-stone-900 block leading-tight">건설안전기사</span>
-                    <span class="text-[10px] text-stone-400 font-mono">한국산업인력공단</span>
+                    <span class="font-bold text-white block leading-tight">건설안전기사</span>
+                    <span class="text-[10px] text-[#8a6574] font-mono">한국산업인력공단</span>
                   </div>
                 </div>
-                <div class="p-2.5 bg-white rounded-xl border border-stone-200 shadow-2xs flex items-center gap-2">
+                <div class="p-2.5 bg-[rgba(38,8,20,0.85)] rounded-lg border border-[rgba(225,60,95,0.25)] flex items-center gap-2">
                   <span class="text-base shrink-0">✏️</span>
                   <div>
-                    <span class="font-bold text-stone-900 block leading-tight">전산응용건축제도기능사</span>
-                    <span class="text-[10px] text-stone-400 font-mono">한국산업인력공단</span>
+                    <span class="font-bold text-white block leading-tight">전산응용건축제도기능사</span>
+                    <span class="text-[10px] text-[#8a6574] font-mono">한국산업인력공단</span>
                   </div>
                 </div>
-                <div class="p-2.5 bg-white rounded-xl border border-stone-200 shadow-2xs flex items-center gap-2">
+                <div class="p-2.5 bg-[rgba(38,8,20,0.85)] rounded-lg border border-[rgba(225,60,95,0.25)] flex items-center gap-2">
                   <span class="text-base shrink-0">🎨</span>
                   <div>
-                    <span class="font-bold text-stone-900 block leading-tight">컴퓨터그래픽스운용기능사</span>
-                    <span class="text-[10px] text-stone-400 font-mono">한국산업인력공단</span>
+                    <span class="font-bold text-white block leading-tight">컴퓨터그래픽스운용기능사</span>
+                    <span class="text-[10px] text-[#8a6574] font-mono">한국산업인력공단</span>
                   </div>
                 </div>
-                <div class="p-2.5 bg-white rounded-xl border border-stone-200 shadow-2xs flex items-center gap-2 sm:col-span-2">
+                <div class="p-2.5 bg-[rgba(38,8,20,0.85)] rounded-lg border border-[rgba(225,60,95,0.25)] flex items-center gap-2 sm:col-span-2">
                   <span class="text-base shrink-0">💻</span>
                   <div>
-                    <span class="font-bold text-stone-900 block leading-tight">컴퓨터활용능력 1급</span>
-                    <span class="text-[10px] text-stone-400 font-mono">대한상공회의소 (최상위 사무분석 공인)</span>
+                    <span class="font-bold text-white block leading-tight">컴퓨터활용능력 1급</span>
+                    <span class="text-[10px] text-[#8a6574] font-mono">대한상공회의소 (최상위 사무분석 공인)</span>
                   </div>
                 </div>
               </div>
             </div>
 
             <!-- 학력 & 전문 교육 이수 내역 -->
-            <div class="space-y-2 border-t border-stone-200/80 pt-4 text-xs">
-              <span class="font-mono text-stone-500 uppercase font-semibold block">Education &amp; Training</span>
-              <div id="web-profile-education" class="space-y-1.5 text-stone-700">
-                <p>• <strong>KD아카데미</strong> AI 실내디자인전공 수료</p>
-                <p>• <strong>건축기사 · 실내건축기사</strong> (국가기술자격 7종 보유)</p>
+            <div class="space-y-2 border-t border-[rgba(225,60,95,0.22)] pt-4 text-xs">
+              <span class="font-mono text-[#8a6574] uppercase font-semibold block">Education &amp; Training</span>
+              <div id="web-profile-education" class="space-y-1.5 text-[#d4b8c2]">
+                <p>• <strong class="text-white">KD아카데미</strong> AI 실내디자인전공 수료</p>
+                <p>• <strong class="text-white">건축기사 · 실내건축기사</strong> (국가기술자격 7종 보유)</p>
               </div>
             </div>
 
-            <!-- 지원 서류 인쇄 / 편집 버튼 군 -->
+            <!-- 지원 서류 인쇄 / 편집 버튼 군 (DESIGN.md 규격) -->
             <div class="space-y-3 pt-2">
-              <span class="editor-only font-mono text-stone-500 uppercase font-semibold block text-xs">지원 서류 직접 편집 &amp; 원클릭 A4 인쇄</span>
+              <span class="editor-only font-mono text-[#656a76] uppercase font-semibold block text-xs">지원 서류 직접 편집 &amp; 원클릭 A4 인쇄</span>
 
               <button 
                 type="button" 
                 onclick="openResumeModal('resume')"
-                class="editor-only capsule-pill w-full py-3.5 bg-amber-400 hover:bg-amber-300 text-stone-950 font-bold text-center block uppercase tracking-wider transition-all shadow-sm flex items-center justify-center gap-2 border border-stone-900 cursor-pointer text-xs"
+                class="editor-only hashi-btn-secondary w-full py-3 border-[#ffcf25]/50 text-[#ffcf25] font-bold"
                 title="이력서 인적사항, 학력, 자격증, 소프트웨어 역량 및 자기소개서 4개 항목을 직접 수정합니다"
               >
                 <span>✏️ 이력서 &amp; 자기소개서 내용 직접 수정하기</span>
@@ -873,7 +944,7 @@
               <button 
                 type="button" 
                 onclick="generatePDF('resume')"
-                class="capsule-pill red-wine-btn w-full py-3.5 text-white font-semibold text-center block uppercase tracking-wider transition-all shadow-sm flex items-center justify-center gap-2 cursor-pointer text-xs"
+                class="hashi-btn-primary w-full py-3"
               >
                 <span>📄 신입 이력서 &amp; 자기소개서 다운로드</span>
               </button>
@@ -881,12 +952,12 @@
               <button 
                 type="button" 
                 onclick="generatePDF('portfolio')"
-                class="capsule-pill w-full py-3 bg-white border border-stone-300 text-stone-900 font-semibold text-center block uppercase tracking-wider hover:border-stone-950 transition-all flex items-center justify-center gap-2 shadow-2xs cursor-pointer text-xs"
+                class="hashi-btn-secondary w-full py-3"
               >
                 <span>📥 포트폴리오 북 다운로드</span>
               </button>
               
-              <span class="text-[11px] text-stone-400 block text-center font-mono">
+              <span class="text-[11px] text-[#656a76] block text-center font-mono">
                 💡 수정하신 모든 내용이 실시간으로 A4 인쇄물과 웹 화면에 100% 반영됩니다.
               </span>
             </div>
@@ -894,6 +965,27 @@
         </div>
       </div>
     </section>
+
+    <!-- ⭐️ [DESIGN.md Footer Component: Deep Wine Canvas Surface & Caption Links] ⭐️ -->
+    <footer class="bg-[#0e0206] border-t border-[rgba(225,60,95,0.22)] py-14 px-6 sm:px-8 text-xs font-mono text-[#8a6574]">
+      <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
+        <div class="flex flex-col sm:flex-row items-center gap-3 text-center sm:text-left">
+          <div class="flex items-center gap-2">
+            <span class="w-2 h-2 rounded-full bg-[#00ca8e]"></span>
+            <span class="font-bold text-white tracking-wider">PORTFOLIO // EDITION 2026</span>
+          </div>
+          <span class="text-[rgba(225,60,95,0.3)] hidden sm:inline">|</span>
+          <span class="text-[#d4b8c2]">신입 실내건축 · 공간 디자이너 &amp; VMD KD박정호</span>
+        </div>
+        <div class="flex flex-wrap items-center justify-center gap-4 text-[11px] text-[#8a6574]">
+          <span>Architectural Wine-Charcoal Canvas</span>
+          <span class="text-[rgba(225,60,95,0.3)]">·</span>
+          <span>BIM &amp; 3D Hyper-Realism Atelier</span>
+          <span class="text-[rgba(225,60,95,0.3)]">·</span>
+          <span class="text-[#d4b8c2]">All Rights Reserved.</span>
+        </div>
+      </div>
+    </footer>
   </div>
 
   <!-- ======================================================== -->
@@ -901,16 +993,16 @@
   <!-- ======================================================== -->
   <div id="print-area" class="hidden"></div>
 
-  <!-- Modal Container -->
-  <div id="modal-container" class="fixed inset-0 z-50 bg-[#160309]/92 backdrop-blur-md hidden items-center justify-center p-0 md:p-6">
-    <div class="bg-[#1b050d] md:bg-white w-full h-full md:h-auto md:max-h-[92vh] max-w-5xl md:rounded-3xl md:border md:border-stone-300 shadow-2xl flex flex-col overflow-y-auto md:overflow-y-auto overflow-hidden" onclick="event.stopPropagation()">
-      <div class="sticky top-0 z-20 bg-stone-900 md:bg-white/95 md:backdrop-blur-md px-4 py-3 md:px-6 md:py-4 border-b border-stone-800 md:border-stone-200 flex items-center justify-between shrink-0">
+  <!-- Modal Container (DESIGN.md Surface-1 Modal) -->
+  <div id="modal-container" class="fixed inset-0 z-50 bg-[#000000]/92 backdrop-blur-md hidden items-center justify-center p-0 md:p-6">
+    <div class="bg-[#15181e] text-white w-full h-full md:h-auto md:max-h-[92vh] max-w-5xl md:rounded-2xl border border-[rgba(178,182,189,0.15)] shadow-2xl flex flex-col overflow-y-auto md:overflow-y-auto overflow-hidden" onclick="event.stopPropagation()">
+      <div class="sticky top-0 z-20 bg-[#191d24] px-4 py-3 md:px-6 md:py-4 border-b border-[#1f232b] flex items-center justify-between shrink-0">
         <div class="flex items-center gap-2.5 md:gap-3">
-          <span id="modal-badge" class="px-3 py-1 text-[11px] md:text-xs font-mono bg-white md:bg-stone-900 text-stone-950 md:text-white uppercase font-semibold rounded-full shadow-2xs">Category</span>
-          <span class="text-xs font-mono text-stone-400 md:text-stone-500 hidden sm:inline">도면 &amp; 렌더 상세 뷰어 (Render / CAD / Detail)</span>
-          <span id="modal-header-seq-mobile" class="text-xs font-mono text-stone-300 sm:hidden">1 / 5</span>
+          <span id="modal-badge" class="px-3 py-1 text-[11px] md:text-xs font-mono bg-white text-black uppercase font-bold rounded-md">Category</span>
+          <span class="text-xs font-mono text-[#b2b6bd] hidden sm:inline">도면 &amp; 렌더 상세 뷰어 (Render / CAD / Detail)</span>
+          <span id="modal-header-seq-mobile" class="text-xs font-mono text-[#b2b6bd] sm:hidden">1 / 5</span>
         </div>
-        <button onclick="closeModal()" class="capsule-pill text-stone-200 md:text-stone-600 hover:text-white md:hover:text-stone-950 font-bold text-xs px-3.5 py-1.5 border border-stone-700 md:border-stone-300 hover:border-white md:hover:border-stone-900 transition-colors bg-stone-800 md:bg-transparent cursor-pointer">
+        <button onclick="closeModal()" class="hashi-btn-secondary text-xs px-3.5 py-1.5 font-bold">
           ✕ 닫기 (ESC)
         </button>
       </div>
@@ -918,68 +1010,68 @@
       <div class="p-3 sm:p-8 space-y-4 sm:space-y-6 flex-1 flex flex-col justify-start">
         <div class="space-y-3">
           <!-- 메인 이미지 / 도면 뷰어 -->
-          <div id="modal-image-wrapper" class="relative w-full aspect-[4/3] sm:aspect-[16/10] md:aspect-[16/10] max-h-[62vh] md:max-h-none bg-stone-950 overflow-hidden shadow-inner flex items-center justify-center group shrink-0 sm:rounded-2xl">
+          <div id="modal-image-wrapper" class="relative w-full aspect-[4/3] sm:aspect-[16/10] md:aspect-[16/10] max-h-[62vh] md:max-h-none bg-[#000000] overflow-hidden shadow-inner flex items-center justify-center group shrink-0 sm:rounded-xl border border-[#1f232b]">
             <img id="modal-image" src="" alt="" class="w-full h-full object-contain md:object-cover transition-all duration-300" />
             
             <!-- 좌우 이전/다음 슬라이드 버튼 (모바일/PC 공통 지원) -->
-            <button id="modal-btn-prev-render" onclick="navigateModalMedia(-1)" class="hidden absolute left-2 md:left-3 top-1/2 -translate-y-1/2 bg-black/75 hover:bg-black text-white p-2.5 md:p-3 rounded-full border border-white/40 transition-all z-20 shadow-lg cursor-pointer" title="이전 (← 키보드 화살표)">
+            <button id="modal-btn-prev-render" onclick="navigateModalMedia(-1)" class="hidden absolute left-2 md:left-3 top-1/2 -translate-y-1/2 bg-[#000000]/85 hover:bg-[#000000] text-white p-2.5 md:p-3 rounded-full border border-[#3b3d45] transition-all z-20 shadow-lg cursor-pointer" title="이전 (← 키보드 화살표)">
               <svg class="w-4 h-4 md:w-5 md:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7"/></svg>
             </button>
-            <button id="modal-btn-next-render" onclick="navigateModalMedia(1)" class="hidden absolute right-2 md:right-3 top-1/2 -translate-y-1/2 bg-black/75 hover:bg-black text-white p-2.5 md:p-3 rounded-full border border-white/40 transition-all z-20 shadow-lg cursor-pointer" title="다음 (→ 키보드 화살표)">
+            <button id="modal-btn-next-render" onclick="navigateModalMedia(1)" class="hidden absolute right-2 md:right-3 top-1/2 -translate-y-1/2 bg-[#000000]/85 hover:bg-[#000000] text-white p-2.5 md:p-3 rounded-full border border-[#3b3d45] transition-all z-20 shadow-lg cursor-pointer" title="다음 (→ 키보드 화살표)">
               <svg class="w-4 h-4 md:w-5 md:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"/></svg>
             </button>
 
-            <!-- 우측 하단 태그 (노란색 군더더기 전면 제거, 모바일에서는 숨김) -->
-            <div id="modal-image-tag" class="hidden sm:flex absolute bottom-4 right-4 bg-black/85 text-stone-200 text-xs px-3.5 py-1.5 font-mono border border-stone-700 rounded-full items-center gap-2 z-10 backdrop-blur-md">
+            <!-- 우측 하단 태그 -->
+            <div id="modal-image-tag" class="hidden sm:flex absolute bottom-4 right-4 bg-[#000000]/85 text-[#b2b6bd] text-xs px-3.5 py-1.5 font-mono border border-[#3b3d45] rounded-md items-center gap-2 z-10 backdrop-blur-md">
               3D Render View
             </div>
           </div>
 
           <!-- ⭐️ [간결한 2D / 3D 전환 툴바 & 연속 순서 인디케이터] ⭐️ -->
-          <div class="flex items-center justify-between gap-2 border-b border-stone-800 md:border-stone-200 pb-2.5 pt-1 flex-wrap">
+          <div class="flex items-center justify-between gap-2 border-b border-[#1f232b] pb-2.5 pt-1 flex-wrap">
             <!-- 2D / 3D 간단 전환 버튼 세트 -->
-            <div class="flex items-center gap-1.5 p-1 bg-stone-900 md:bg-stone-100 border border-stone-800 md:border-stone-300 rounded-full">
+            <div class="flex items-center gap-1.5 p-1 bg-[#191d24] border border-[#3b3d45] rounded-lg">
               <button 
                 id="modal-btn-type-3d" 
                 type="button"
                 onclick="jumpToMediaType('3d')" 
-                class="capsule-pill flex items-center gap-1.5 px-3.5 py-1.5 text-xs font-mono font-bold transition-all shadow-xs bg-stone-800 md:bg-stone-900 text-white cursor-pointer"
+                class="flex items-center gap-1.5 px-3.5 py-1.5 text-xs font-mono font-bold transition-all bg-white text-black rounded-md cursor-pointer"
                 title="3D 렌더 투시도 구역으로 이동"
               >
                 <span>🖼️ 3D</span>
-                <span id="modal-badge-count-3d" class="text-[10px] px-2 py-0.5 rounded-full bg-stone-700 md:bg-stone-800 text-stone-200 font-semibold font-mono">2컷</span>
+                <span id="modal-badge-count-3d" class="text-[10px] px-2 py-0.5 rounded-full bg-black/15 text-black font-semibold font-mono">2컷</span>
               </button>
               <button 
                 id="modal-btn-type-2d" 
                 type="button"
                 onclick="jumpToMediaType('2d')" 
-                class="capsule-pill flex items-center gap-1.5 px-3.5 py-1.5 text-xs font-mono font-bold transition-all text-stone-400 md:text-stone-700 hover:bg-stone-800 md:hover:bg-stone-200 cursor-pointer"
+                class="flex items-center gap-1.5 px-3.5 py-1.5 text-xs font-mono font-bold transition-all text-[#b2b6bd] hover:text-white hover:bg-[#1f232b] rounded-md cursor-pointer"
                 title="2D CAD 실시도면 구역으로 이동"
               >
                 <span>📐 2D</span>
-                <span id="modal-badge-count-2d" class="text-[10px] px-2 py-0.5 rounded-full bg-stone-800 md:bg-stone-200 text-stone-300 md:text-stone-700 font-semibold font-mono">3종</span>
+                <span id="modal-badge-count-2d" class="text-[10px] px-2 py-0.5 rounded-full bg-[#1f232b] text-[#b2b6bd] font-semibold font-mono">3종</span>
               </button>
             </div>
 
             <!-- 연속 이어서 보기 순서 안내 & 이전/다음 빠른 이동 + 도면 관리 -->
             <div class="flex items-center gap-2">
-              <div class="flex items-center bg-stone-900 md:bg-white border border-stone-800 md:border-stone-300 rounded-full shadow-xs overflow-hidden">
+              <div class="flex items-center bg-[#191d24] border border-[#3b3d45] rounded-lg shadow-xs overflow-hidden">
                 <button 
                   type="button"
                   onclick="navigateModalMedia(-1)" 
-                  class="px-3 py-1.5 hover:bg-stone-800 md:hover:bg-stone-100 text-stone-300 md:text-stone-700 hover:text-white md:hover:text-stone-950 transition-colors cursor-pointer flex items-center gap-1 text-xs font-mono font-semibold" 
+                  class="px-3 py-1.5 hover:bg-[#1f232b] text-[#b2b6bd] hover:text-white transition-colors cursor-pointer flex items-center gap-1 text-xs font-mono font-semibold" 
                   title="이전 컷으로 이동 (← 키보드 화살표)"
                 >
                   <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7"/></svg>
                   <span class="hidden sm:inline">이전</span>
                 </button>
-                <span id="modal-media-sequence-badge" class="px-3 py-1.5 bg-black md:bg-stone-900 text-white text-[11px] font-mono font-bold border-x border-stone-800 whitespace-nowrap">
+                <span id="modal-media-sequence-badge" class="px-3 py-1.5 bg-[#000000] text-white text-[11px] font-mono font-bold border-x border-[#3b3d45] whitespace-nowrap">
                   1 / 5 · 3D 메인
                 </span>
                 <button 
                   type="button"
                   onclick="navigateModalMedia(1)" 
-                  class="px-3 py-1.5 hover:bg-stone-800 md:hover:bg-stone-100 text-stone-300 md:text-stone-700 hover:text-white md:hover:text-stone-950 transition-colors cursor-pointer flex items-center gap-1 text-xs font-mono font-semibold" 
+                  class="px-3 py-1.5 hover:bg-[#1f232b] text-[#b2b6bd] hover:text-white transition-colors cursor-pointer flex items-center gap-1 text-xs font-mono font-semibold" 
                   title="다음 컷으로 이동 (→ 키보드 화살표)"
                 >
                   <span class="hidden sm:inline">다음</span>
@@ -990,7 +1082,7 @@
               <button 
                 type="button"
                 onclick="openUploadModal(currentActiveProject.id, 'drawings')" 
-                class="editor-only capsule-pill flex items-center gap-1 px-3 py-1.5 text-xs font-mono font-medium text-stone-700 hover:text-stone-950 bg-stone-100 hover:bg-stone-200 border border-stone-300 transition-colors cursor-pointer"
+                class="editor-only hashi-btn-secondary px-3 py-1.5 text-xs font-mono"
                 title="도면을 추가하거나 필요 없는 도면을 제외(숨김)합니다"
               >
                 <span>⚙️ 도면 추가/제외</span>
@@ -999,38 +1091,38 @@
           </div>
 
           <!-- ⭐️ [이미지 밑에서 골라서 볼 수 있는 3D & 2D 통합 썸네일 스트립] ⭐️ -->
-          <div id="modal-unified-thumbnails" class="flex items-center gap-2 overflow-x-auto pb-1.5 pt-0.5 border-b border-stone-800 md:border-stone-200 scrollbar-thin">
+          <div id="modal-unified-thumbnails" class="flex items-center gap-2 overflow-x-auto pb-1.5 pt-0.5 border-b border-[#1f232b] scrollbar-thin">
             <!-- JS 동적 생성: 3D 렌더 + 활성 2D 도면 전체 목록 -->
           </div>
 
           <!-- ⭐️ [현재 선택된 3D/2D 실무 해설 및 스케일 바 & 즉시 교체/관리 액션 버튼] ⭐️ -->
-          <div id="modal-drawing-info-bar" class="bg-stone-900 md:bg-stone-100 p-3 sm:p-4 rounded-2xl border border-stone-800 md:border-stone-200 text-xs font-mono flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2.5 sm:gap-3">
+          <div id="modal-drawing-info-bar" class="bg-[#191d24] p-3 sm:p-4 rounded-xl border border-[#1f232b] text-xs font-mono flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2.5 sm:gap-3">
             <div class="flex items-start gap-2.5 sm:gap-3 flex-1 min-w-0">
-              <span id="modal-drawing-scale-badge" class="px-2.5 py-0.5 bg-stone-800 md:bg-stone-900 text-white font-mono font-bold text-[10.5px] sm:text-[11px] rounded-full shrink-0 shadow-2xs">3D PERSPECTIVE</span>
+              <span id="modal-drawing-scale-badge" class="px-2.5 py-0.5 bg-white text-black font-mono font-bold text-[10.5px] sm:text-[11px] rounded-md shrink-0 shadow-2xs">3D PERSPECTIVE</span>
               <div class="flex-1 min-w-0">
-                <span id="modal-drawing-name" class="font-bold text-stone-100 md:text-stone-900 block mb-0.5 truncate sm:overflow-visible">3D 하이퍼리얼 렌더 투시도</span>
-                <p id="modal-drawing-desc" class="text-stone-400 md:text-stone-600 text-[11px] sm:text-[11.5px] font-sans font-light line-clamp-2 sm:line-clamp-none">공간의 마감재 질감과 조명 연출을 실시간 레이트레이싱 기법으로 시각화한 메인 투시도입니다.</p>
+                <span id="modal-drawing-name" class="font-bold text-white block mb-0.5 truncate sm:overflow-visible">3D 하이퍼리얼 렌더 투시도</span>
+                <p id="modal-drawing-desc" class="text-[#b2b6bd] text-[11px] sm:text-[11.5px] font-sans font-normal line-clamp-2 sm:line-clamp-none">공간의 마감재 질감과 조명 연출을 실시간 레이트레이싱 기법으로 시각화한 메인 투시도입니다.</p>
               </div>
             </div>
 
             <!-- 액션 버튼 세트: 대표지정 / 2D도면 즉시제외 / 파일교체 / 전체관리 -->
             <div class="editor-only flex items-center gap-2 shrink-0 w-full sm:w-auto justify-end flex-wrap">
               <button 
-                id="modal-btn-set-primary"
+                id="modal-btn-set-primary" 
                 type="button"
                 onclick="setPrimaryFromViewer()"
-                class="hidden capsule-pill px-3 py-1.5 bg-stone-800 hover:bg-stone-700 text-stone-200 font-mono font-bold text-xs items-center gap-1.5 shadow-sm transition-colors border border-stone-600 cursor-pointer"
+                class="hidden hashi-btn-secondary px-3 py-1.5 text-xs font-mono font-bold"
                 title="현재 보고 있는 3D 렌더를 이 프로젝트의 대표 메인 썸네일로 지정합니다"
               >
-                <span>⭐ 대표 썸네일로 지정</span>
+                <span>⭐ 대표 썸네일 지정</span>
               </button>
               
               <!-- ⭐️ [2D 도면 열람 중 원클릭 제외 버튼] ⭐️ -->
               <button 
-                id="modal-btn-exclude-drawing"
+                id="modal-btn-exclude-drawing" 
                 type="button"
                 onclick="excludeCurrentDrawing()"
-                class="hidden capsule-pill px-3 py-1.5 bg-rose-50 hover:bg-rose-100 text-rose-700 border border-rose-300 font-mono font-bold text-xs items-center gap-1 shadow-sm transition-colors cursor-pointer"
+                class="hidden hashi-btn-secondary text-rose-400 border-rose-900/60 px-3 py-1.5 text-xs font-mono font-bold"
                 title="이 2D 도면을 포트폴리오 및 미리보기에서 제외(숨김)합니다"
               >
                 <span>🚫 이 도면 제외</span>
@@ -1038,17 +1130,17 @@
 
               <input type="file" id="direct-viewer-file-input" accept="image/*,.svg" class="hidden" onchange="onDirectViewerFileSelected(event)">
               <button 
-                type="button"
+                type="button" 
                 onclick="document.getElementById('direct-viewer-file-input').click()" 
-                class="capsule-pill px-3 py-1.5 bg-stone-900 text-white hover:bg-stone-800 text-xs font-mono font-bold flex items-center gap-1 shadow-sm transition-colors border border-stone-800 cursor-pointer"
+                class="hashi-btn-primary px-3 py-1.5 text-xs font-mono font-bold"
                 title="현재 열려있는 도면 또는 이미지를 내 파일로 바로 교체합니다"
               >
                 <span>📤 파일 교체</span>
               </button>
               <button 
-                type="button"
+                type="button" 
                 onclick="openUploadModal(currentActiveProject.id)" 
-                class="capsule-pill px-3 py-1.5 bg-white text-stone-800 hover:bg-stone-50 border border-stone-300 text-xs font-mono font-semibold flex items-center gap-1 shadow-sm transition-colors cursor-pointer"
+                class="hashi-btn-secondary px-3 py-1.5 text-xs font-mono font-semibold"
                 title="이 프로젝트의 3D 렌더 다중 추가 및 2D 도면 자율 추가/빼기(제외)를 관리합니다"
               >
                 <span>⚙️ 전체 관리</span>
@@ -1057,44 +1149,44 @@
           </div>
         </div>
 
-        <div class="hidden md:grid grid-cols-1 lg:grid-cols-12 gap-8 pt-4 border-t border-stone-200">
+        <div class="hidden md:grid grid-cols-1 lg:grid-cols-12 gap-8 pt-4 border-t border-[#1f232b]">
           <div class="lg:col-span-8 space-y-5">
             <div>
-              <h2 id="modal-title" class="text-2xl sm:text-3xl font-bold tracking-tight text-stone-950 font-display break-keep">Project Title</h2>
-              <p id="modal-subtitle" class="text-xs font-mono text-stone-500 mt-1">Designer & Duration</p>
+              <h2 id="modal-title" class="text-2xl sm:text-3xl font-bold tracking-tight text-white font-display break-keep">Project Title</h2>
+              <p id="modal-subtitle" class="text-xs font-mono text-[#656a76] mt-1">Designer &amp; Duration</p>
             </div>
 
             <div class="space-y-2">
-              <h4 class="text-xs uppercase font-mono text-stone-400 font-semibold tracking-wider">01. 공간 기획 의도 & 콘셉트 (Concept Note)</h4>
-              <p id="modal-concept" class="text-sm sm:text-base text-stone-700 font-light leading-relaxed break-keep whitespace-pre-line"></p>
+              <h4 class="text-xs uppercase font-mono text-[#ffcf25] font-semibold tracking-wider">01. 공간 기획 의도 &amp; 콘셉트 (Concept Note)</h4>
+              <p id="modal-concept" class="text-sm sm:text-base text-[#b2b6bd] font-normal leading-relaxed break-keep whitespace-pre-line"></p>
             </div>
 
             <div class="space-y-2">
-              <h4 class="text-xs uppercase font-mono text-stone-400 font-semibold tracking-wider">02. 공간 설계 핵심 포인트 (Key Spatial Points)</h4>
-              <ul id="modal-features" class="space-y-1.5 text-xs sm:text-sm text-stone-600 font-light"></ul>
+              <h4 class="text-xs uppercase font-mono text-[#14c6cb] font-semibold tracking-wider">02. 공간 설계 핵심 포인트 (Key Spatial Points)</h4>
+              <ul id="modal-features" class="space-y-1.5 text-xs sm:text-sm text-[#b2b6bd] font-normal"></ul>
             </div>
           </div>
 
-          <div class="lg:col-span-4 bg-stone-50/90 p-6 rounded-2xl border border-stone-200 space-y-4 text-xs">
-            <h4 class="font-mono text-stone-700 uppercase font-bold">프로젝트 제원 (Project Data)</h4>
-            <div class="space-y-2 border-b border-stone-200 pb-3">
-              <div class="flex justify-between"><span class="text-stone-400">면적 / 스케일:</span><span id="modal-area" class="font-mono font-medium"></span></div>
-              <div class="flex justify-between"><span class="text-stone-400">제작 기간:</span><span id="modal-year" class="font-mono"></span></div>
-              <div class="flex justify-between"><span class="text-stone-400">프로젝트 성격:</span><span id="modal-location"></span></div>
+          <div class="lg:col-span-4 bg-[#191d24] p-6 rounded-xl border border-[#1f232b] space-y-4 text-xs">
+            <h4 class="font-mono text-white uppercase font-bold">프로젝트 제원 (Project Data)</h4>
+            <div class="space-y-2 border-b border-[#1f232b] pb-3">
+              <div class="flex justify-between"><span class="text-[#656a76]">면적 / 스케일:</span><span id="modal-area" class="font-mono font-medium text-white"></span></div>
+              <div class="flex justify-between"><span class="text-[#656a76]">제작 기간:</span><span id="modal-year" class="font-mono text-white"></span></div>
+              <div class="flex justify-between"><span class="text-[#656a76]">프로젝트 성격:</span><span id="modal-location" class="text-white"></span></div>
             </div>
             
             <!-- ⭐️ 2D CAD 4대 도면 검증 체계 퀵링크 ⭐️ -->
-            <div class="border-b border-stone-200 pb-3 space-y-2">
-              <span class="text-stone-400 block font-mono">📐 2D CAD 실시도면 4종 체계:</span>
+            <div class="border-b border-[#1f232b] pb-3 space-y-2">
+              <span class="text-[#656a76] block font-mono">📐 2D CAD 실시도면 4종 체계:</span>
               <div id="modal-cad-list" class="space-y-1.5 font-mono text-[11px]"></div>
             </div>
 
             <div>
-              <span class="text-stone-400 block mb-1.5 font-mono">사용 소프트웨어 (Tools):</span>
+              <span class="text-[#656a76] block mb-1.5 font-mono">사용 소프트웨어 (Tools):</span>
               <div id="modal-tools" class="flex flex-wrap gap-1.5"></div>
             </div>
             <div class="pt-2">
-              <span class="text-stone-400 block mb-1.5 font-mono">적용 마감재 스펙 (Materials):</span>
+              <span class="text-[#656a76] block mb-1.5 font-mono">적용 마감재 스펙 (Materials):</span>
               <div id="modal-materials" class="flex flex-wrap gap-1.5"></div>
             </div>
           </div>
@@ -2183,7 +2275,7 @@
           <button onclick="generatePDF('resume')" class="px-4 py-2 bg-white border border-stone-400 text-stone-900 text-xs font-mono font-bold hover:bg-stone-50 shadow-sm transition-colors cursor-pointer">
             📄 A4 이력서 인쇄
           </button>
-          <button onclick="closeResumeModal()" class="px-6 py-2 bg-stone-950 text-white text-xs font-mono font-bold hover:bg-stone-800 transition-colors shadow-sm cursor-pointer">
+          <button onclick="applyAndCloseResumeModal()" class="px-6 py-2 bg-stone-950 text-white text-xs font-mono font-bold hover:bg-stone-800 transition-colors shadow-sm cursor-pointer">
             ✓ 적용 확인 및 닫기
           </button>
         </div>
@@ -2785,10 +2877,10 @@
     }
 
     function getSoftwareGradeBadgeClass(grade) {
-      if (grade === '최상') return 'text-amber-950 bg-amber-100/90 border border-amber-400 font-bold';
-      if (grade === '상') return 'text-stone-800 bg-stone-100 border border-stone-300 font-bold';
-      if (grade === '중') return 'text-stone-600 bg-stone-50 border border-stone-200 font-medium';
-      return 'text-stone-400 bg-white border border-stone-200 font-normal';
+      if (grade === '최상') return 'text-[#ffcf25] bg-[#ffcf25]/15 border border-[#ffcf25]/40 font-bold';
+      if (grade === '상') return 'text-[#b2b6bd] bg-[#1f232b] border border-[#3b3d45] font-bold';
+      if (grade === '중') return 'text-[#656a76] bg-[#15181e] border border-[#3b3d45] font-medium';
+      return 'text-[#656a76] bg-[#15181e] border border-[#3b3d45] font-normal';
     }
 
     // ⭐️ [공간 디자인 5대 테마 전환 시스템] ⭐️
@@ -2821,8 +2913,10 @@
     }
 
     function initTheme() {
-      const saved = localStorage.getItem('kd_portfolio_theme') || 'theme-warm-travertine';
-      selectTheme(saved);
+      // DESIGN.md Enterprise Dark Canvas System 고정
+      THEMES.forEach(t => document.body.classList.remove(t.id));
+      document.body.classList.add('hashi-canvas');
+      localStorage.setItem('kd_portfolio_theme', 'hashi-canvas');
     }
 
     // 프로젝트 메인 썸네일 getter 헬퍼
@@ -2887,6 +2981,15 @@
     // ========================================================
     function renderProjects() {
       const listEl = document.getElementById('projects-list');
+      
+      // DESIGN.md Per-Product Identity Accent Tokens
+      const accentTokens = [
+        { border: '#e62b1e', bg: 'rgba(230, 43, 30, 0.15)', text: '#ff8a80', dot: '#e62b1e' }, // 01 Consul Red / Wine
+        { border: '#7b42bc', bg: 'rgba(123, 66, 188, 0.18)', text: '#d1b3ff', dot: '#911ced' }, // 02 Terraform Purple
+        { border: '#14c6cb', bg: 'rgba(20, 198, 203, 0.15)', text: '#80deea', dot: '#14c6cb' }, // 03 Waypoint Cyan
+        { border: '#ffcf25', bg: 'rgba(255, 207, 37, 0.15)', text: '#ffe082', dot: '#ffcf25' }, // 04 Vault Yellow
+      ];
+
       listEl.innerHTML = PROJECTS.map((p, idx) => {
         const thumb = getProjectThumbnail(p);
         const hoverDrawing = getProjectHoverDrawing(p);
@@ -2894,24 +2997,25 @@
         const rendersCount = p.renders ? p.renders.length : 1;
         const indexStr = String(idx + 1).padStart(2, '0');
         const totalStr = String(PROJECTS.length).padStart(2, '0');
+        const accent = accentTokens[idx % accentTokens.length];
 
         return `
-        <article class="arch-capsule-card group relative bg-white/95 border border-stone-200/90 hover:border-amber-700/40 rounded-3xl shadow-xs hover:shadow-xl transition-all duration-500 overflow-hidden">
-          <!-- 상단 테크니컬 아카이브 인덱스 리본 -->
-          <div class="px-5 sm:px-8 py-3 bg-stone-50/80 border-b border-stone-200/70 flex items-center justify-between text-xs font-mono text-stone-500">
+        <article class="hashi-card group relative rounded-xl border border-[rgba(225,60,95,0.22)] hover:border-[rgba(225,60,95,0.55)] transition-all duration-300 overflow-hidden bg-[#18050e]/85 backdrop-blur-md">
+          <!-- 상단 테크니컬 아카이브 인덱스 리본 (DESIGN.md Eyebrow Header) -->
+          <div class="px-5 sm:px-8 py-3 bg-[#200612] border-b border-[rgba(225,60,95,0.22)] flex items-center justify-between text-xs font-mono text-[#d4b8c2]">
             <div class="flex items-center gap-2">
-              <span class="w-1.5 h-1.5 rounded-full bg-amber-700"></span>
-              <span class="font-bold text-stone-900 tracking-wider">INDEX. ${indexStr} / ${totalStr}</span>
-              <span class="text-stone-300">|</span>
-              <span class="text-stone-600 font-medium">${p.number}</span>
-              <span class="text-stone-300 hidden sm:inline">·</span>
-              <span id="card-tag-${p.id}" class="text-stone-700 font-semibold hidden sm:inline">${p.categoryName}</span>
+              <span class="w-2 h-2 rounded-full" style="background-color: ${accent.dot};"></span>
+              <span class="font-bold text-white tracking-wider">INDEX. ${indexStr} / ${totalStr}</span>
+              <span class="text-[rgba(225,60,95,0.3)]">|</span>
+              <span class="text-[#d4b8c2] font-medium">${p.number}</span>
+              <span class="text-[rgba(225,60,95,0.3)] hidden sm:inline">·</span>
+              <span id="card-tag-${p.id}" class="text-white font-semibold hidden sm:inline">${p.categoryName}</span>
             </div>
             <div class="flex items-center gap-2.5">
-              <span id="card-area-${p.id}" class="px-2.5 py-0.5 rounded-full bg-stone-100 border border-stone-200 text-stone-900 font-bold text-[11px]">
+              <span id="card-area-${p.id}" class="px-2.5 py-0.5 rounded-full bg-[#2a0818] border border-[rgba(225,60,95,0.3)] text-white font-bold text-[11px]">
                 📐 ${p.area}
               </span>
-              <span class="text-stone-400 font-mono text-[11px]">${p.year}</span>
+              <span class="text-[#8a6574] font-mono text-[11px]">${p.year}</span>
             </div>
           </div>
 
@@ -2919,7 +3023,7 @@
             <!-- 좌측: 비주얼 뷰포트 (16:10 프레임) -->
             <div 
               onclick="openModal('${p.id}', 'render', 0)"
-              class="lg:col-span-7 relative aspect-[16/10] bg-stone-950 cursor-pointer overflow-hidden m-3 sm:m-4 rounded-2xl border border-stone-800/40 group/thumb"
+              class="lg:col-span-7 relative aspect-[16/10] bg-[#120207] cursor-pointer overflow-hidden m-3 sm:m-4 rounded-xl border border-[rgba(225,60,95,0.22)] group/thumb"
             >
               <img
                 src="${thumb}"
@@ -2927,29 +3031,29 @@
                 class="w-full h-full object-cover transition-all duration-700 ease-out group-hover/thumb:scale-103"
               />
               ${hoverDrawing ? `
-                <div class="hidden sm:flex absolute inset-0 opacity-0 group-hover/thumb:opacity-100 transition-opacity duration-500 pointer-events-none bg-white/95 items-center justify-center p-3 rounded-2xl border border-stone-300 shadow-inner">
+                <div class="hidden sm:flex absolute inset-0 opacity-0 group-hover/thumb:opacity-100 transition-opacity duration-500 pointer-events-none bg-[#14030a]/95 items-center justify-center p-3 rounded-xl border border-[rgba(225,60,95,0.3)] shadow-inner">
                   <img 
                     src="${hoverDrawing.image}" 
                     alt="도면 투과 미리보기"
-                    class="w-full h-full object-contain"
+                    class="w-full h-full object-contain filter invert"
                   />
-                  <span class="absolute bottom-4 right-4 px-3.5 py-1 text-[11px] uppercase font-mono tracking-widest bg-stone-950/90 backdrop-blur-md text-white border border-stone-700 rounded-full font-bold shadow-md">
+                  <span class="absolute bottom-4 right-4 px-3.5 py-1 text-[11px] uppercase font-mono tracking-widest bg-[#18040d]/90 backdrop-blur-md text-white border border-[rgba(225,60,95,0.3)] rounded-full font-bold shadow-md">
                     📐 국가표준 도면 투과 (${hoverDrawing.title.split(' ')[0]} ${hoverDrawing.title.split(' ')[1] || ''})
                   </span>
                 </div>
               ` : ''}
 
-              <!-- ⭐️ 이미지 위 단정한 단일 배지: 모바일 360px에서도 절대 겹치지 않는 좌상단 고정 ⭐️ -->
+              <!-- 이미지 위 단정한 단일 배지: DESIGN.md Identity Token Badge -->
               <div class="absolute top-3 left-3 z-10 pointer-events-none">
-                <span id="card-badge-${p.id}" class="px-3 py-1 text-[11px] sm:text-xs font-mono font-bold uppercase rounded-full red-wine-badge shadow-md pointer-events-auto">
+                <span id="card-badge-${p.id}" class="px-3 py-1 text-[11px] sm:text-xs font-mono font-bold uppercase rounded-full shadow-md pointer-events-auto border" style="background-color: ${accent.bg}; border-color: ${accent.border}; color: ${accent.text};">
                   ${p.number} · ${p.categoryName}
                 </span>
               </div>
 
               <!-- 이미지 우하단 3D 뷰어 힌트 칩 -->
               <div class="absolute bottom-3 right-3 z-10 pointer-events-none hidden sm:block">
-                <span class="px-2.5 py-1 text-[10px] font-mono uppercase rounded-full bg-stone-900/80 backdrop-blur-sm text-stone-300 border border-white/10 shadow-sm flex items-center gap-1.5">
-                  <span class="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse"></span>
+                <span class="px-2.5 py-1 text-[10px] font-mono uppercase rounded-full bg-[#18040d]/80 backdrop-blur-sm text-[#d4b8c2] border border-[rgba(225,60,95,0.3)] shadow-sm flex items-center gap-1.5">
+                  <span class="w-1.5 h-1.5 rounded-full bg-[#ffcf25] animate-pulse"></span>
                   VIEW 3D &amp; CAD (${rendersCount} Renders)
                 </span>
               </div>
@@ -2959,25 +3063,25 @@
             <div class="lg:col-span-5 p-5 sm:p-6 lg:p-7 flex flex-col justify-between space-y-4">
               <div class="space-y-3.5">
                 <!-- 프로젝트 관리 액션 툴바 (편집 모드 시 노출) -->
-                <div class="editor-only flex items-center justify-between gap-2 flex-wrap bg-stone-50/90 rounded-2xl p-2.5 border border-stone-200">
+                <div class="editor-only flex items-center justify-between gap-2 flex-wrap bg-[#200612] rounded-lg p-2.5 border border-[rgba(225,60,95,0.25)]">
                   <div class="flex items-center gap-1.5">
-                    <span class="text-[11px] font-mono text-stone-500 font-bold px-1">순서:</span>
-                    <div class="flex items-center bg-white border border-stone-300 rounded-full p-0.5 shadow-xs">
+                    <span class="text-[11px] font-mono text-[#d4b8c2] font-bold px-1">순서:</span>
+                    <div class="flex items-center bg-[#2a0818] border border-[rgba(225,60,95,0.3)] rounded-md p-0.5">
                       <button 
                         type="button"
                         onclick="event.stopPropagation(); moveProject('${p.id}', -1)"
                         ${idx === 0 ? 'disabled' : ''}
-                        class="capsule-pill px-2 py-0.5 text-xs font-mono font-bold transition-all flex items-center gap-1 ${idx === 0 ? 'opacity-25 cursor-not-allowed text-stone-400' : 'hover:bg-stone-900 hover:text-white text-stone-800 cursor-pointer'}"
+                        class="hashi-btn-secondary px-2 py-0.5 text-xs font-mono font-bold ${idx === 0 ? 'opacity-25 cursor-not-allowed text-[#8a6574]' : ''}"
                         title="${idx === 0 ? '가장 첫 번째 프로젝트입니다' : '이 프로젝트를 이전(위) 순서로 이동'}"
                       >
                         <span>▲</span><span>위로</span>
                       </button>
-                      <span class="text-stone-300 text-xs">|</span>
+                      <span class="text-[rgba(225,60,95,0.3)] text-xs px-1">|</span>
                       <button 
                         type="button"
                         onclick="event.stopPropagation(); moveProject('${p.id}', 1)"
                         ${idx === PROJECTS.length - 1 ? 'disabled' : ''}
-                        class="capsule-pill px-2 py-0.5 text-xs font-mono font-bold transition-all flex items-center gap-1 ${idx === PROJECTS.length - 1 ? 'opacity-25 cursor-not-allowed text-stone-400' : 'hover:bg-stone-900 hover:text-white text-stone-800 cursor-pointer'}"
+                        class="hashi-btn-secondary px-2 py-0.5 text-xs font-mono font-bold ${idx === PROJECTS.length - 1 ? 'opacity-25 cursor-not-allowed text-[#8a6574]' : ''}"
                         title="${idx === PROJECTS.length - 1 ? '가장 마지막 프로젝트입니다' : '이 프로젝트를 다음(아래) 순서로 이동'}"
                       >
                         <span>아래로</span><span>▼</span>
@@ -2989,7 +3093,7 @@
                     <button 
                       onclick="openUploadModal('${p.id}', 'info')"
                       title="프로젝트 명칭, 공간 분류, 평형 및 기획 콘셉트 실시간 변경"
-                      class="capsule-pill text-xs font-mono font-semibold text-stone-700 hover:text-stone-950 bg-white hover:bg-stone-100 border border-stone-300 px-3 py-1 transition-colors flex items-center gap-1 shadow-xs cursor-pointer"
+                      class="hashi-btn-secondary text-xs font-mono font-semibold px-2.5 py-1"
                     >
                       <span>✏️ 명칭 / 설명</span>
                     </button>
@@ -2997,33 +3101,33 @@
                       type="button"
                       onclick="deleteProject('${p.id}')"
                       title="이 프로젝트를 포트폴리오에서 제외(삭제)합니다"
-                      class="capsule-pill text-xs font-mono font-semibold text-rose-600 hover:text-rose-700 bg-white hover:bg-rose-50 border border-stone-300 hover:border-rose-300 px-3 py-1 transition-colors flex items-center gap-1 shadow-xs cursor-pointer"
+                      class="hashi-btn-secondary text-xs font-mono font-semibold text-rose-400 border-rose-900/60 px-2.5 py-1"
                     >
                       <span>🗑️ 제외</span>
                     </button>
                   </div>
                 </div>
 
-                <!-- 프로젝트 메인 제목 -->
+                <!-- 프로젝트 메인 제목 (DESIGN.md Card Title 규격) -->
                 <div>
-                  <h3 id="card-title-${p.id}" class="text-2xl sm:text-3xl font-bold tracking-tight text-stone-950 font-display break-keep leading-snug">
+                  <h3 id="card-title-${p.id}" class="text-2xl sm:text-3xl font-bold tracking-tight text-white font-display break-keep leading-snug">
                     ${p.title}
                   </h3>
                 </div>
 
-                <!-- 기획 콘셉트 설명 (에디토리얼 인용선) -->
-                <p id="card-concept-${p.id}" class="text-stone-600 text-sm leading-relaxed font-light break-keep whitespace-pre-line border-l-2 border-amber-600/30 pl-3">
+                <!-- 기획 콘셉트 설명 (DESIGN.md Editorial Quote) -->
+                <p id="card-concept-${p.id}" class="text-[#d4b8c2] text-sm leading-relaxed font-normal break-keep whitespace-pre-line border-l-2 pl-3" style="border-color: ${accent.dot};">
                   ${p.concept}
                 </p>
                 
-                <!-- ⭐️ [자율 구성된 2D CAD 도면 바로가기 버튼 세트] ⭐️ -->
+                <!-- ⭐️ [자율 구성된 2D CAD 도면 바로가기 버튼 세트 (DESIGN.md Surface-2 칩)] ⭐️ -->
                 <div class="space-y-1.5 pt-1">
                   <div class="flex items-center justify-between">
-                    <span class="text-xs font-mono text-stone-500 font-semibold uppercase flex items-center gap-1.5">
-                      <span class="w-1.5 h-1.5 rounded-full bg-amber-700"></span>
+                    <span class="text-xs font-mono text-[#d4b8c2] font-semibold uppercase flex items-center gap-1.5">
+                      <span class="w-1.5 h-1.5 rounded-full" style="background-color: ${accent.dot};"></span>
                       2D 실시도면 세트 (${activeDrawings.length}종 수록)
                     </span>
-                    <span class="text-[10px] font-mono text-stone-400">클릭 시 즉시 열람</span>
+                    <span class="text-[10px] font-mono text-[#8a6574]">클릭 시 즉시 열람</span>
                   </div>
 
                   ${activeDrawings.length > 0 ? `
@@ -3034,43 +3138,43 @@
                         return `
                           <button 
                             onclick="openModal('${p.id}', '${d.id}')" 
-                            class="drawing-capsule-chip px-3 py-2 bg-stone-50/90 hover:bg-stone-900 hover:text-white border border-stone-200 text-[11px] font-mono text-left group flex items-center justify-between shadow-2xs cursor-pointer transition-all"
+                            class="px-3 py-2 bg-[rgba(40,10,22,0.85)] hover:bg-[rgba(65,15,35,0.95)] hover:border-[rgba(225,60,95,0.6)] text-white border border-[rgba(225,60,95,0.25)] rounded-lg text-[11px] font-mono text-left group flex items-center justify-between transition-all cursor-pointer"
                             title="${d.title} 열람"
                           >
-                            <span class="font-bold block text-stone-800 group-hover:text-white truncate mr-1">${icon} ${shortTitle}</span>
-                            <span class="text-stone-400 group-hover:text-amber-300 text-[10px] shrink-0">↗</span>
+                            <span class="font-bold block text-white group-hover:text-amber-300 truncate mr-1">${icon} ${shortTitle}</span>
+                            <span class="text-[#8a6574] group-hover:text-amber-300 text-[10px] shrink-0">↗</span>
                           </button>
                         `;
                       }).join('')}
                     </div>
                   ` : `
-                    <div class="p-3 bg-stone-50 rounded-2xl border border-dashed border-stone-300 text-stone-500 font-mono text-xs flex items-center justify-between">
+                    <div class="p-3 bg-[#200612] rounded-lg border border-dashed border-[rgba(225,60,95,0.25)] text-[#d4b8c2] font-mono text-xs flex items-center justify-between">
                       <span>현재 포함된 2D 도면이 없습니다.</span>
-                      <button onclick="openUploadModal('${p.id}', 'drawings')" class="text-stone-900 font-bold underline">도면 추가하기</button>
+                      <button onclick="openUploadModal('${p.id}', 'drawings')" class="text-white font-bold underline">도면 추가하기</button>
                     </div>
                   `}
                 </div>
               </div>
 
               <!-- 하단 툴 태그 및 뷰어 실행 버튼 -->
-              <div class="pt-3 border-t border-stone-200/80 space-y-3">
+              <div class="pt-3 border-t border-[rgba(225,60,95,0.22)] space-y-3">
                 <div class="flex items-center justify-between text-xs flex-wrap gap-1">
-                  <span class="font-mono text-stone-400 text-[11px]">SPEC TOOLS:</span>
+                  <span class="font-mono text-[#8a6574] text-[11px]">SPEC TOOLS:</span>
                   <div class="flex flex-wrap gap-1">
-                    ${p.tools.map(t => `<span class="px-2 py-0.5 rounded-full font-mono bg-stone-100 text-stone-700 text-[11px] border border-stone-200/70">${t}</span>`).join('')}
+                    ${p.tools.map(t => `<span class="px-2 py-0.5 rounded-full font-mono bg-[#280816] text-[#d4b8c2] text-[11px] border border-[rgba(225,60,95,0.25)]">${t}</span>`).join('')}
                   </div>
                 </div>
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
                   <button
                     onclick="openModal('${p.id}', 'render', 0)"
-                    class="viewer-expand capsule-pill red-wine-btn w-full py-3.5 px-5 text-white text-xs font-semibold uppercase tracking-wider transition-all flex items-center justify-center gap-2 shadow-sm cursor-pointer"
+                    class="viewer-expand hashi-btn-primary w-full py-3 px-5 text-xs uppercase tracking-wider justify-center gap-2"
                   >
                     <span>3D 렌더 &amp; 2D 도면 뷰어</span>
-                    <span class="text-rose-200 font-mono">→</span>
+                    <span class="font-mono">→</span>
                   </button>
                   <button
                     onclick="openUploadModal('${p.id}')"
-                    class="editor-only capsule-pill w-full py-3 px-5 bg-stone-100 hover:bg-stone-200 text-stone-900 border border-stone-300 text-xs font-mono font-bold tracking-tight transition-all flex items-center justify-center gap-1.5 shadow-sm cursor-pointer"
+                    class="editor-only hashi-btn-secondary w-full py-3 px-5 text-xs font-mono font-bold tracking-tight justify-center gap-1.5"
                     title="3D 렌더 다중 등록 및 2D 캐드 도면 자율 추가/빼기를 관리합니다"
                   >
                     <span>⚙️ 도면 추가/제외 &amp; 렌더 관리</span>
@@ -4313,15 +4417,22 @@
     function updateLandingWebDOM() {
       const badgeEl = document.getElementById('web-hero-badge');
       if (badgeEl) {
-        badgeEl.innerHTML = `<span class="w-2 h-2 rounded-full bg-emerald-600"></span><span>${LANDING_DATA.heroBadge || 'Junior Interior Architect & Spatial Designer Portfolio'}</span>`;
+        badgeEl.innerHTML = `<span class="w-2 h-2 rounded-full bg-rose-400 ring-4 ring-rose-400/30 animate-pulse"></span><span>${LANDING_DATA.heroBadge || 'Junior Spatial Designer & VMD Portfolio'}</span>`;
       }
       const title1El = document.getElementById('web-hero-title1');
-      if (title1El) title1El.innerText = LANDING_DATA.heroTitleLine1 || 'Logic in Design,';
+      if (title1El) title1El.innerText = LANDING_DATA.heroTitleLine1 || '정밀한 설계의 질서 위에,';
       const title2El = document.getElementById('web-hero-title2');
-      if (title2El) title2El.innerText = LANDING_DATA.heroTitleLine2 || 'Precision in Drafting.';
+      if (title2El) title2El.innerText = LANDING_DATA.heroTitleLine2 || '브랜드의 입체적 경험을 완성합니다.';
 
       const descEl = document.getElementById('web-hero-desc');
-      if (descEl) descEl.innerText = LANDING_DATA.heroDesc || '';
+      if (descEl) {
+        const descText = LANDING_DATA.heroDesc || `신입 실내건축 · 공간 디자이너 및 VMD 지원자 ${RESUME_DATA.name || 'KD박정호'}입니다.\n정밀한 2D 실시설계와 3D 공간 시각화, 브랜드의 입체적 경험을 완성하는 공간 디자인 포트폴리오를 확인하세요.`;
+        if (descText.includes('※ 현재 대표 프로젝트')) {
+          descEl.innerText = descText;
+        } else {
+          descEl.innerHTML = `${descText.replace(/\n/g, '<br/>')}<span class="block mt-2 text-xs font-mono text-amber-300/80 font-medium">※ 현재 대표 프로젝트 본 작품을 준비 중이며, 사이트에 수록된 도면 및 렌더링은 포트폴리오 시스템 구성을 위한 샘플 이미지입니다.</span>`;
+        }
+      }
 
       const secTitleEl = document.getElementById('portfolio-section-title');
       if (secTitleEl) {
@@ -4330,6 +4441,59 @@
       }
       const secBadgeEl = document.getElementById('web-portfolio-badge');
       if (secBadgeEl) secBadgeEl.innerText = LANDING_DATA.projectSectionBadge || 'Core Works';
+    }
+
+    async function applyAndCloseResumeModal() {
+      // 1. 현재 모달 입력 폼의 모든 최신값을 전역 변수에 강제 동기화
+      const nameInput = document.getElementById('input-resume-name');
+      if (nameInput) {
+        RESUME_DATA.name = nameInput.value;
+        PORTFOLIO_META.applicantName = nameInput.value;
+      }
+      const titleInput = document.getElementById('input-resume-title');
+      if (titleInput) {
+        RESUME_DATA.title = titleInput.value;
+        PORTFOLIO_META.applicantTitle = titleInput.value;
+      }
+      const phoneInput = document.getElementById('input-resume-phone');
+      if (phoneInput) {
+        RESUME_DATA.phone = phoneInput.value;
+        PORTFOLIO_META.contactPhone = phoneInput.value;
+      }
+      const emailInput = document.getElementById('input-resume-email');
+      if (emailInput) RESUME_DATA.email = emailInput.value;
+      const addressInput = document.getElementById('input-resume-address');
+      if (addressInput) RESUME_DATA.address = addressInput.value;
+      const introInput = document.getElementById('input-resume-intro');
+      if (introInput) RESUME_DATA.intro = introInput.value;
+
+      // 대문 랜딩 탭 입력값 동기화
+      const landingBadge = document.getElementById('input-landing-hero-badge');
+      if (landingBadge) LANDING_DATA.heroBadge = landingBadge.value;
+      const landingTitle1 = document.getElementById('input-landing-hero-title1');
+      if (landingTitle1) LANDING_DATA.heroTitleLine1 = landingTitle1.value;
+      const landingTitle2 = document.getElementById('input-landing-hero-title2');
+      if (landingTitle2) LANDING_DATA.heroTitleLine2 = landingTitle2.value;
+      const landingDesc = document.getElementById('input-landing-hero-desc');
+      if (landingDesc) LANDING_DATA.heroDesc = landingDesc.value;
+      const landingSecTitle = document.getElementById('input-landing-section-title');
+      if (landingSecTitle) LANDING_DATA.projectSectionTitle = landingSecTitle.value;
+      const landingSecBadge = document.getElementById('input-landing-section-badge');
+      if (landingSecBadge) LANDING_DATA.projectSectionBadge = landingSecBadge.value;
+
+      // 2. 스토리지(LocalStorage & IndexedDB)에 즉각 영구 저장
+      await saveResumeData();
+      await saveCoverLetterData();
+      await savePortfolioMetaData();
+      await saveLandingData();
+
+      // 3. 웹 화면 전체(대문 타이틀, 대문 우측 스펙 카드, 프로필 섹션 등) 실시간 즉시 반영
+      updateResumeWebDOM();
+      updateLandingWebDOM();
+
+      // 4. 모달 닫기 및 성공 토스트 알림
+      closeResumeModal();
+      showUploadToast('✅ 수정하신 문구 및 서류 내용이 웹 화면에 100% 반영되었습니다.');
     }
 
     async function resetAllResumeData() {
@@ -4351,19 +4515,27 @@
     }
 
     function updateResumeWebDOM() {
-      // 1. 프로필 성명 및 타이틀
+      // 1. 대문 우측 Floating Spec Card 실시간 즉각 갱신
+      const heroNameEl = document.getElementById('web-hero-candidate-name');
+      if (heroNameEl) heroNameEl.innerText = RESUME_DATA.name || '지원자';
+      const heroDisciplineEl = document.getElementById('web-hero-discipline');
+      if (heroDisciplineEl) heroDisciplineEl.innerText = RESUME_DATA.title || '실내건축 · 공간 VMD';
+      const heroContactEl = document.getElementById('web-hero-contact');
+      if (heroContactEl) heroContactEl.innerText = RESUME_DATA.phone || '031-846-5888';
+
+      // 2. 프로필 성명 및 타이틀
       const nameEl = document.getElementById('web-profile-name');
       if (nameEl) {
         nameEl.innerHTML = `${RESUME_DATA.name || '지원자'} <span id="web-profile-title" class="text-base font-normal text-stone-500 font-sans">| ${RESUME_DATA.title || 'Junior Interior Designer'}</span>`;
       }
 
-      // 2. 프로필 소개글
+      // 3. 프로필 소개글
       const introEl = document.getElementById('web-profile-intro');
       if (introEl) {
         introEl.innerText = `“${RESUME_DATA.intro || ''}”`;
       }
 
-      // 3. 소프트웨어 역량 바
+      // 4. 소프트웨어 역량 바
       const swEl = document.getElementById('web-profile-software');
       if (swEl && RESUME_DATA.software) {
         swEl.innerHTML = RESUME_DATA.software.map(s => {
@@ -4371,18 +4543,20 @@
           const pct = getSoftwareGradePercent(s.level);
           const badgeCls = getSoftwareGradeBadgeClass(grade);
           return `
-            <div class="bg-white p-3 rounded-2xl border border-stone-200 shadow-2xs hover:border-amber-600/40 hover:shadow-xs transition-all">
+            <div class="hashi-card p-3 rounded-lg border border-[rgba(178,182,189,0.12)] hover:border-[rgba(178,182,189,0.3)] transition-all bg-[#15181e]">
               <div class="flex justify-between items-center font-mono mb-1.5">
-                <span class="font-medium text-stone-900">${s.name}</span>
-                <span class="px-2 py-0.5 rounded-full text-[11px] font-mono shadow-2xs ${badgeCls}">${grade}</span>
+                <span class="font-medium text-white">${s.name}</span>
+                <span class="px-2 py-0.5 rounded-full text-[11px] font-mono ${badgeCls}">${grade}</span>
               </div>
-              <div class="w-full bg-stone-100 h-1.5 rounded-full overflow-hidden"><div class="red-wine-bar h-1.5 rounded-full transition-all duration-500" style="width: ${pct}%"></div></div>
+              <div class="w-full bg-[#1f232b] h-1.5 rounded-full overflow-hidden">
+                <div class="bg-gradient-to-r from-[#2b89ff] to-[#14c6cb] h-1.5 rounded-full transition-all duration-500" style="width: ${pct}%"></div>
+              </div>
             </div>
           `;
         }).join('');
       }
 
-      // 4. 학력 및 멘토링
+      // 5. 학력 및 멘토링
       const eduEl = document.getElementById('web-profile-education');
       if (eduEl) {
         const lines = [];
@@ -8527,22 +8701,6 @@ ${sourceText || '(초안 없음. 해당 항목에 어울리는 최상의 실무 
       if (savedResume) {
         RESUME_DATA = Object.assign({}, DEFAULT_RESUME_DATA, savedResume);
       }
-      if (RESUME_DATA.email && RESUME_DATA.email.includes('kd-academy')) {
-        RESUME_DATA.email = 'portfolio.designer@gmail.com';
-      }
-      if (RESUME_DATA.address && RESUME_DATA.address.includes('의정부')) {
-        RESUME_DATA.address = '서울특별시 마포구 양화로 000';
-      }
-      if (RESUME_DATA.education && RESUME_DATA.education.length > 0) {
-        RESUME_DATA.education.forEach(e => {
-          if (e.school && (e.school.includes('KD') || e.school.includes('의정부'))) {
-            e.school = '실내건축 전문 교육원';
-          }
-          if (e.major && (e.major.includes('박정호') || e.major.includes('지도교사'))) {
-            e.major = '실내건축 취업 포트폴리오 과정';
-          }
-        });
-      }
 
       const savedCover = await loadCoverLetterData();
       if (savedCover) {
@@ -8555,19 +8713,10 @@ ${sourceText || '(초안 없음. 해당 항목에 어울리는 최상의 실무 
           }
         });
       }
-      if (COVER_LETTER_DATA.subtitle && (COVER_LETTER_DATA.subtitle.includes('KD') || COVER_LETTER_DATA.subtitle.includes('의정부'))) {
-        COVER_LETTER_DATA.subtitle = `지원자: ${RESUME_DATA.name || '김 민 재'}`;
-      }
 
       const savedMeta = await loadPortfolioMetaData();
       if (savedMeta) {
         PORTFOLIO_META = Object.assign({}, DEFAULT_PORTFOLIO_META, savedMeta);
-      }
-      if (PORTFOLIO_META.academyName && (PORTFOLIO_META.academyName.includes('KD') || PORTFOLIO_META.academyName.includes('의정부'))) {
-        PORTFOLIO_META.academyName = '';
-      }
-      if (PORTFOLIO_META.teacherName && PORTFOLIO_META.teacherName.includes('박정호')) {
-        PORTFOLIO_META.teacherName = '';
       }
       updateResumeWebDOM();
 
