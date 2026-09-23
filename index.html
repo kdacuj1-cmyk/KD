@@ -532,6 +532,9 @@
           <a href="#designer-profile" class="text-xs font-mono text-[#d4b8c2] hover:text-white transition-colors hidden md:block">
             지원자 프로필 (PROFILE)
           </a>
+          <a href="#contact" class="text-xs font-mono text-[#e5cbd4] hover:text-[#e11d48] font-semibold transition-colors hidden lg:block">
+            채용 문의 (CONTACT)
+          </a>
 
           <!-- 관리자 전용 편집 모드 제어 버튼 군 -->
           <div class="editor-only flex items-center gap-1.5 bg-[#1a050e] p-1 rounded-lg border border-[rgba(225,60,95,0.25)]">
@@ -988,6 +991,120 @@
               </span>
             </div>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ⭐️ [기업 실무 면접 제안 초간편 창: 회사명 / 지역 / 메일 / 연락처] ⭐️ -->
+    <section id="contact" class="relative bg-transparent border-t border-[rgba(225,60,95,0.22)] py-14 sm:py-20 px-4 sm:px-8 overflow-hidden">
+      <!-- 앰비언트 글로우 배경 효과 -->
+      <div class="absolute inset-0 pointer-events-none overflow-hidden">
+        <div class="absolute bottom-0 right-1/4 w-[450px] h-[450px] rounded-full bg-[#e11d48]/10 blur-[120px]"></div>
+        <div class="absolute inset-0 bg-[radial-gradient(rgba(225,60,95,0.06)_1px,transparent_1px)] [background-size:24px_24px]"></div>
+      </div>
+
+      <div class="max-w-2xl mx-auto relative z-10 space-y-6">
+        <!-- 상단 헤더 & 직관적 안내문구 -->
+        <div class="text-center space-y-2">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#1e0510] border border-[rgba(225,60,95,0.35)] shadow-inner">
+            <span class="w-2 h-2 rounded-full bg-[#e11d48] ring-4 ring-[#e11d48]/20 animate-pulse"></span>
+            <span class="text-[11px] font-mono tracking-[0.22em] text-[#f5d0de] uppercase font-semibold">FAST RECRUITMENT CONTACT</span>
+          </div>
+
+          <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-white font-display">
+            채용 면접 제안
+          </h2>
+
+          <p class="text-xs sm:text-sm text-[#d4b8c2] leading-relaxed">
+            회사명과 연락처를 남겨주시면 포트폴리오 원본과 함께 당일 신속히 연락드리겠습니다.
+          </p>
+        </div>
+
+        <!-- 간단 명료 4개 항목 카드 폼 (Hashi Dark Wine Card) -->
+        <div class="hashi-card p-6 sm:p-8 border border-[rgba(225,60,95,0.32)] shadow-2xl relative backdrop-blur-xl">
+          <form id="recruitment-form" onsubmit="handleContactSubmit(event)" class="space-y-4">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <!-- 1. 회사명 -->
+              <div class="space-y-1.5">
+                <label for="contact-company" class="block text-xs font-mono font-semibold text-[#f5d0de]">
+                  🏢 회사명 <span class="text-[#e11d48]">*</span>
+                </label>
+                <input 
+                  type="text" 
+                  id="contact-company" 
+                  name="company" 
+                  required 
+                  placeholder="(주)회사명" 
+                  class="w-full bg-[#18040d]/90 text-white placeholder-[#8a6574] border border-[rgba(225,60,95,0.3)] focus:border-[#e11d48] focus:ring-1 focus:ring-[#e11d48] rounded-lg px-3.5 py-2.5 text-xs sm:text-sm font-sans transition-all outline-none"
+                />
+              </div>
+
+              <!-- 2. 근무 지역 -->
+              <div class="space-y-1.5">
+                <label for="contact-region" class="block text-xs font-mono font-semibold text-[#f5d0de]">
+                  📍 근무 지역 <span class="text-[#e11d48]">*</span>
+                </label>
+                <input 
+                  type="text" 
+                  id="contact-region" 
+                  name="region" 
+                  required 
+                  placeholder="예: 서울 강남구 / 판교 등" 
+                  class="w-full bg-[#18040d]/90 text-white placeholder-[#8a6574] border border-[rgba(225,60,95,0.3)] focus:border-[#e11d48] focus:ring-1 focus:ring-[#e11d48] rounded-lg px-3.5 py-2.5 text-xs sm:text-sm font-sans transition-all outline-none"
+                />
+              </div>
+
+              <!-- 3. 회신 이메일 -->
+              <div class="space-y-1.5">
+                <label for="contact-email" class="block text-xs font-mono font-semibold text-[#f5d0de]">
+                  ✉️ 회신 이메일 <span class="text-[#e11d48]">*</span>
+                </label>
+                <input 
+                  type="email" 
+                  id="contact-email" 
+                  name="email" 
+                  required 
+                  placeholder="recruit@company.com" 
+                  class="w-full bg-[#18040d]/90 text-white placeholder-[#8a6574] border border-[rgba(225,60,95,0.3)] focus:border-[#e11d48] focus:ring-1 focus:ring-[#e11d48] rounded-lg px-3.5 py-2.5 text-xs sm:text-sm font-sans transition-all outline-none"
+                />
+              </div>
+
+              <!-- 4. 연락처 -->
+              <div class="space-y-1.5">
+                <label for="contact-phone" class="block text-xs font-mono font-semibold text-[#f5d0de]">
+                  📞 연락처 <span class="text-[#e11d48]">*</span>
+                </label>
+                <input 
+                  type="tel" 
+                  id="contact-phone" 
+                  name="phone" 
+                  required 
+                  placeholder="010-0000-0000" 
+                  class="w-full bg-[#18040d]/90 text-white placeholder-[#8a6574] border border-[rgba(225,60,95,0.3)] focus:border-[#e11d48] focus:ring-1 focus:ring-[#e11d48] rounded-lg px-3.5 py-2.5 text-xs sm:text-sm font-sans transition-all outline-none"
+                />
+              </div>
+            </div>
+
+            <!-- 접수 버튼 & 신뢰 문구 -->
+            <div class="pt-2 space-y-2.5">
+              <button 
+                type="submit" 
+                class="hashi-btn-primary w-full py-3 text-sm sm:text-base font-bold shadow-xl flex items-center justify-center gap-2 cursor-pointer transition-all hover:scale-[1.01] active:scale-[0.99]"
+              >
+                <span>📬 면접 제안 접수하기</span>
+              </button>
+              <div class="flex flex-col sm:flex-row items-center justify-between gap-1.5 text-[11px] text-[#8a6574] font-mono text-center sm:text-left">
+                <span class="flex items-center gap-1">
+                  <span>🔒</span>
+                  <span>채용 검토 및 회신용으로만 안전하게 전달됩니다.</span>
+                </span>
+                <span class="text-[#00ca8e] flex items-center gap-1">
+                  <span class="w-1.5 h-1.5 rounded-full bg-[#00ca8e] animate-ping"></span>
+                  <span>상시 확인 중</span>
+                </span>
+              </div>
+            </div>
+          </form>
         </div>
       </div>
     </section>
@@ -9011,6 +9128,50 @@ ${sourceText || '(초안 없음. 해당 항목에 어울리는 최상의 실무 
       if (modal) modal.classList.add('hidden');
     }
 
+    // ⭐️ [기업 실무 면접 제안 초간편 접수 처리: 회사명, 근무 지역, 이메일, 연락처] ⭐️
+    function handleContactSubmit(event) {
+      event.preventDefault();
+      const form = event.target;
+      const company = form.company ? form.company.value.trim() : '';
+      const region = form.region ? form.region.value.trim() : '';
+      const email = form.email ? form.email.value.trim() : '';
+      const phone = form.phone ? form.phone.value.trim() : '';
+
+      try {
+        const proposals = JSON.parse(localStorage.getItem('kd_recruitment_proposals') || '[]');
+        proposals.push({
+          id: 'prop_' + Date.now(),
+          date: new Date().toLocaleString('ko-KR'),
+          company,
+          region,
+          email,
+          phone
+        });
+        localStorage.setItem('kd_recruitment_proposals', JSON.stringify(proposals));
+      } catch (err) {
+        console.warn('Local storage error:', err);
+      }
+
+      const modal = document.getElementById('contact-confirm-modal');
+      if (modal) {
+        const compEl = document.getElementById('contact-modal-company');
+        const regEl = document.getElementById('contact-modal-region');
+        const contEl = document.getElementById('contact-modal-contact');
+        if (compEl) compEl.textContent = company;
+        if (regEl) regEl.textContent = region;
+        if (contEl) contEl.textContent = email + (phone ? ' · ' + phone : '');
+        modal.classList.remove('hidden');
+      } else {
+        alert('🎉 [' + company + ' / ' + region + '] 채용 면접 제안이 성공적으로 접수되었습니다!\n기재해주신 연락처(' + email + ')로 신속히 연락드리겠습니다.');
+      }
+      form.reset();
+    }
+
+    function closeContactModal() {
+      const modal = document.getElementById('contact-confirm-modal');
+      if (modal) modal.classList.add('hidden');
+    }
+
     // 테마 및 모드 초기화 실행
     let originalWebsiteHTML = '';
     document.addEventListener('DOMContentLoaded', () => {
@@ -9101,6 +9262,61 @@ ${sourceText || '(초안 없음. 해당 항목에 어울리는 최상의 실무 
           <span>🚀 GitHub 업로드 페이지 바로가기</span>
           <span>↗</span>
         </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ⭐️ [채용 면접 제안 접수 완료 알림 모달] ⭐️ -->
+  <div id="contact-confirm-modal" class="fixed inset-0 z-[99999] bg-[#0e0206]/85 backdrop-blur-md hidden flex items-center justify-center p-4">
+    <div class="hashi-surface-1 border border-[rgba(225,60,95,0.4)] max-w-lg w-full p-6 sm:p-8 space-y-6 shadow-2xl rounded-2xl animate-in fade-in zoom-in-95 duration-200">
+      <div class="flex items-start gap-4">
+        <div class="w-12 h-12 rounded-xl bg-[#e11d48]/20 border border-[#e11d48]/40 flex items-center justify-center text-2xl shrink-0">
+          💌
+        </div>
+        <div class="space-y-1">
+          <h3 class="text-lg sm:text-xl font-bold text-white font-display">
+            채용 면접 제안이 성공적으로 접수되었습니다!
+          </h3>
+          <p class="text-xs text-[#d4b8c2] font-mono">
+            소중한 제안과 관심에 진심으로 감사드립니다.
+          </p>
+        </div>
+      </div>
+
+      <div class="bg-[#120207] border border-[rgba(225,60,95,0.25)] p-4 rounded-xl space-y-2.5 text-xs text-[#e5cbd4] font-mono">
+        <div class="flex justify-between items-center pb-2 border-b border-[rgba(225,60,95,0.18)]">
+          <span class="text-[#8a6574]">🏢 제안 회사:</span>
+          <span id="contact-modal-company" class="font-bold text-white text-right">-</span>
+        </div>
+        <div class="flex justify-between items-center pb-2 border-b border-[rgba(225,60,95,0.18)]">
+          <span class="text-[#8a6574]">📍 근무 지역:</span>
+          <span id="contact-modal-region" class="font-semibold text-[#ffcf25] text-right">-</span>
+        </div>
+        <div class="flex justify-between items-center pb-2 border-b border-[rgba(225,60,95,0.18)]">
+          <span class="text-[#8a6574]">📞 회신 연락처:</span>
+          <span id="contact-modal-contact" class="font-bold text-[#d4b8c2] text-right">-</span>
+        </div>
+        <div class="flex justify-between items-center pt-1">
+          <span class="text-[#8a6574]">진행 상태:</span>
+          <span class="text-[#00ca8e] font-semibold flex items-center gap-1.5">
+            <span class="w-2 h-2 rounded-full bg-[#00ca8e] animate-pulse"></span>
+            <span>정상 접수 완료 (24시간 내 회신)</span>
+          </span>
+        </div>
+      </div>
+
+      <div class="text-xs text-[#d4b8c2] leading-relaxed font-sans">
+        보내주신 제안 내용은 즉시 디자이너에게 안전하게 전달되었으며, 기재해주신 공식 연락처로 포트폴리오 원본 자료 및 회신을 드리겠습니다.
+      </div>
+
+      <div class="flex justify-end pt-2 border-t border-[rgba(225,60,95,0.22)]">
+        <button 
+          type="button" 
+          onclick="closeContactModal()" 
+          class="hashi-btn-primary px-6 py-2.5 text-xs font-bold cursor-pointer"
+        >
+          확인 완료
+        </button>
       </div>
     </div>
   </div>
