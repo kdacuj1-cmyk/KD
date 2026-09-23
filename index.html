@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>KD박정호 | 신입 실내건축 · 공간 디자이너 & VMD 포트폴리오</title>
+  <title>KD아카데미 | 신입 실내건축 · 공간 디자이너 & VMD 포트폴리오</title>
   
   <!-- Fonts: Syne (Architectural Display), Cormorant Garamond (Editorial Luxury Serif), Plus Jakarta Sans (Modern UI), Pretendard, JetBrains Mono (Technical Spec) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -73,7 +73,7 @@
     }
   </script>
 
-  <style>
+  <style id="portfolio-styles">
     :root {
       --canvas: #120207;
       --surface-1: #1a050e;
@@ -438,6 +438,32 @@
     body.hashi-canvas #web-profile-intro {
       color: #e5cbd4 !important;
     }
+
+    /* 편집 패널의 밝은 입력창과 모바일 작업 영역 */
+    .editor-panel > * { min-width: 0; }
+    .editor-panel .overflow-x-auto { max-width: 100%; }
+    #modal-header-seq-mobile { white-space: nowrap; flex-shrink: 0; }
+    #modal-container button[onclick="closeModal()"] { white-space: nowrap; flex-shrink: 0; }
+    @media (max-width: 639px) {
+      #upload-modal, #project-order-modal, #ai-proofread-modal, #resume-modal {
+        padding: 12px 12px 64px;
+      }
+      .editor-panel { max-height: 100%; }
+      .editor-panel > .sticky { flex-wrap: wrap; gap: 12px; padding: 16px; }
+      .editor-panel > .sticky > .flex { width: 100%; flex-wrap: wrap; gap: 8px; }
+      .editor-panel > .sticky > .flex:first-child { align-items: flex-start; }
+      .editor-panel > .sticky h3 { flex: 1 1 160px; }
+      .editor-panel > .sticky button { white-space: nowrap; }
+      .editor-panel .grid > *, .editor-panel .flex > * { min-width: 0; }
+      .editor-panel table { min-width: 520px; }
+    }
+    @media print {
+      body.hashi-canvas, #print-area {
+        background: #fff !important;
+        color: #1c1917 !important;
+      }
+      body.hashi-canvas { overflow: visible !important; }
+    }
   </style>
 
   <!-- ⭐️ [인쇄 시 백지 0장 및 웹 요소 철통 방어 스타일] ⭐️ -->
@@ -590,7 +616,7 @@
 
             <div class="border-l-2 border-[#ffcf25]/80 pl-4 sm:pl-5 py-1">
               <p id="web-hero-desc" class="text-[#b2b6bd] text-base sm:text-lg font-normal leading-relaxed whitespace-pre-line font-sans">
-                신입 실내건축 · 공간 디자이너 및 VMD 지원자 KD박정호입니다.
+                신입 실내건축 · 공간 디자이너 및 VMD 지원자 KD아카데미입니다.
                 정밀한 2D 실시설계와 3D 공간 시각화, 브랜드의 입체적 경험을 완성하는 공간 디자인 포트폴리오를 확인하세요.
                 <span class="block mt-2 text-xs font-mono text-[#ffcf25]/80 font-medium">※ 현재 대표 프로젝트 본 작품을 준비 중이며, 사이트에 수록된 도면 및 렌더링은 포트폴리오 시스템 구성을 위한 샘플 이미지입니다.</span>
               </p>
@@ -654,7 +680,7 @@
               <div class="space-y-3 font-mono text-xs">
                 <div class="flex justify-between items-center py-1 border-b border-[#1f232b]">
                   <span class="text-[#656a76]">CANDIDATE</span>
-                  <span class="font-bold text-white font-sans text-sm"><span id="web-hero-candidate-name">KD박정호</span> <span class="text-xs text-[#b2b6bd] font-normal">(신입)</span></span>
+                  <span class="font-bold text-white font-sans text-sm"><span id="web-hero-candidate-name">KD아카데미</span> <span class="text-xs text-[#b2b6bd] font-normal">(신입)</span></span>
                 </div>
                 <div class="flex justify-between items-center py-1 border-b border-[#1f232b]">
                   <span class="text-[#656a76]">DISCIPLINE</span>
@@ -772,7 +798,7 @@
           </div>
           <div class="flex flex-col sm:flex-row sm:items-baseline justify-between gap-3">
             <h2 id="web-profile-name" class="text-3xl sm:text-5xl font-bold tracking-tight text-white font-display break-keep">
-              KD박정호 <span id="web-profile-title" class="text-sm sm:text-base font-normal text-[#b2b6bd] font-sans block sm:inline mt-1 sm:mt-0">| 신입 실내건축 · 공간 디자이너 / VMD</span>
+              KD아카데미 <span id="web-profile-title" class="text-sm sm:text-base font-normal text-[#b2b6bd] font-sans block sm:inline mt-1 sm:mt-0">| 신입 실내건축 · 공간 디자이너 / VMD</span>
             </h2>
             <span class="text-xs font-mono text-[#656a76]">RESUME &amp; QUALIFICATION SPEC</span>
           </div>
@@ -975,7 +1001,7 @@
             <span class="font-bold text-white tracking-wider">PORTFOLIO // EDITION 2026</span>
           </div>
           <span class="text-[rgba(225,60,95,0.3)] hidden sm:inline">|</span>
-          <span class="text-[#d4b8c2]">신입 실내건축 · 공간 디자이너 &amp; VMD KD박정호</span>
+          <span class="text-[#d4b8c2]">신입 실내건축 · 공간 디자이너 &amp; VMD KD아카데미</span>
         </div>
         <div class="flex flex-wrap items-center justify-center gap-4 text-[11px] text-[#8a6574]">
           <span>Architectural Wine-Charcoal Canvas</span>
@@ -1197,7 +1223,7 @@
 
   <!-- ⭐️ [내 도면 및 렌더 직접 업로드 관리 모달창] ⭐️ -->
   <div id="upload-modal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden items-center justify-center p-3 sm:p-6">
-    <div class="bg-white w-full max-w-4xl max-h-[92vh] overflow-y-auto border border-stone-300 shadow-2xl flex flex-col" onclick="event.stopPropagation()">
+    <div class="editor-panel bg-white text-stone-900 w-full max-w-4xl max-h-[92vh] overflow-y-auto border border-stone-300 shadow-2xl flex flex-col" onclick="event.stopPropagation()">
       <div class="sticky top-0 z-20 bg-stone-900 text-white px-6 py-4 border-b border-stone-800 flex items-center justify-between">
         <div class="flex items-center gap-3">
           <span class="px-2.5 py-0.5 text-xs font-mono bg-white text-stone-900 uppercase font-bold">PORTFOLIO STUDIO</span>
@@ -1421,7 +1447,7 @@
             </div>
             <div class="flex justify-end gap-2 pt-2">
               <button onclick="toggleNewDrawingForm(false)" class="px-3 py-1.5 bg-white border border-stone-300 text-stone-700 font-mono text-xs hover:bg-stone-50">취소</button>
-              <button onclick="saveNewDrawingDirect()" class="px-4 py-1.5 bg-stone-900 text-amber-300 hover:text-white font-mono font-bold text-xs shadow-sm">등록 및 추가</button>
+              <button onclick="submitNewDrawing()" class="px-4 py-1.5 bg-stone-900 text-amber-300 hover:text-white font-mono font-bold text-xs shadow-sm">등록 및 추가</button>
             </div>
           </div>
 
@@ -1543,7 +1569,7 @@
 
   <!-- ⭐️ [프로젝트 순서 및 구성 자율 관리 모달] ⭐️ -->
   <div id="project-order-modal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden items-center justify-center p-3 sm:p-6">
-    <div class="bg-white w-full max-w-2xl max-h-[90vh] overflow-y-auto border border-stone-300 shadow-2xl flex flex-col" onclick="event.stopPropagation()">
+    <div class="editor-panel bg-white text-stone-900 w-full max-w-2xl max-h-[90vh] overflow-y-auto border border-stone-300 shadow-2xl flex flex-col" onclick="event.stopPropagation()">
       <!-- Header -->
       <div class="sticky top-0 z-20 bg-stone-900 text-white px-6 py-4 border-b border-stone-800 flex items-center justify-between">
         <div class="flex items-center gap-3">
@@ -1601,7 +1627,7 @@
 
   <!-- ⭐️ [실무 공간 디자이너 스타일 문장 교정·교열 AI 스튜디오 모달] ⭐️ -->
   <div id="ai-proofread-modal" class="fixed inset-0 z-[60] bg-black/80 backdrop-blur-sm hidden items-center justify-center p-3 sm:p-6">
-    <div class="bg-white w-full max-w-3xl max-h-[92vh] overflow-y-auto border border-stone-300 shadow-2xl flex flex-col" onclick="event.stopPropagation()">
+    <div class="editor-panel bg-white text-stone-900 w-full max-w-3xl max-h-[92vh] overflow-y-auto border border-stone-300 shadow-2xl flex flex-col" onclick="event.stopPropagation()">
       <!-- Header -->
       <div class="sticky top-0 z-20 bg-stone-900 text-white px-6 py-4 border-b border-stone-800 flex items-center justify-between">
         <div class="flex items-center gap-3">
@@ -1853,7 +1879,7 @@
 
   <!-- ⭐️ [이력서 · 자기소개서 & 포트폴리오 정보 자율 편집 스튜디오 모달] ⭐️ -->
   <div id="resume-modal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden items-center justify-center p-3 sm:p-6">
-    <div class="bg-white w-full max-w-4xl max-h-[92vh] overflow-y-auto border border-stone-300 shadow-2xl flex flex-col" onclick="event.stopPropagation()">
+    <div class="editor-panel bg-white text-stone-900 w-full max-w-4xl max-h-[92vh] overflow-y-auto border border-stone-300 shadow-2xl flex flex-col" onclick="event.stopPropagation()">
       <!-- Header -->
       <div class="sticky top-0 z-20 bg-stone-900 text-white px-6 py-4 border-b border-stone-800 flex items-center justify-between">
         <div class="flex items-center gap-3">
@@ -2294,7 +2320,7 @@
     // ⭐️ [이력서, 자기소개서, 포트폴리오 기본 메타 데이터 정의] ⭐️
     // ========================================================
     const DEFAULT_RESUME_DATA = {
-  "name": "KD박정호",
+  "name": "KD아카데미",
   "title": "신입 실내건축 · 공간 디자이너 / VMD",
   "birth": "2001. 01. 01",
   "phone": "031-846-5888",
@@ -2420,7 +2446,7 @@
     const DEFAULT_COVER_LETTER_DATA = {
   "headerTitle": "Junior Interior Architect & Spatial Designer Cover Letter",
   "mainTitle": "자 기 소 개 서",
-  "subtitle": "지원자: KD박정호",
+  "subtitle": "지원자: KD아카데미",
   "items": [
     {
       "title": "01. 지원 동기 — 정밀한 설계와 브랜드 입체 경험을 잇는 디자이너",
@@ -2446,7 +2472,7 @@
 };
 
     const DEFAULT_PORTFOLIO_META = {
-      applicantName: "KD박정호",
+      applicantName: "KD아카데미",
       applicantTitle: "신입 실내건축 · 공간 디자이너 / VMD",
       academyName: "KD아카데미",
       teacherName: "박정호",
@@ -2460,7 +2486,7 @@
   "heroBadge": "Junior Spatial Designer & VMD Portfolio",
   "heroTitleLine1": "정밀한 설계의 질서 위에,",
   "heroTitleLine2": "브랜드의 입체적 경험을 완성합니다.",
-  "heroDesc": "신입 실내건축 · 공간 디자이너 및 VMD 지원자 KD박정호입니다.\n정밀한 2D 실시설계와 3D 공간 시각화, 브랜드의 입체적 경험을 완성하는 공간 디자인 포트폴리오를 확인하세요.\n(※ 현재 대표 프로젝트 본 작품을 준비 중이며, 사이트에 수록된 도면 및 렌더링은 포트폴리오 시스템 구성을 위한 샘플 이미지입니다.)",
+  "heroDesc": "신입 실내건축 · 공간 디자이너 및 VMD 지원자 KD아카데미입니다.\n정밀한 2D 실시설계와 3D 공간 시각화, 브랜드의 입체적 경험을 완성하는 공간 디자인 포트폴리오를 확인하세요.\n(※ 현재 대표 프로젝트 본 작품을 준비 중이며, 사이트에 수록된 도면 및 렌더링은 포트폴리오 시스템 구성을 위한 샘플 이미지입니다.)",
   "projectSectionTitle": "Selected Masterpieces",
   "projectSectionBadge": "Core Works"
 };
@@ -2477,7 +2503,7 @@
     "categoryTag": "상업 · 뷰티 & 헤어살롱",
     "categoryName": "상업 · 뷰티 & 헤어살롱",
     "title": "프리미엄 헤어살롱 & 뷰티 라운지",
-    "designer": "KD박정호",
+    "designer": "KD아카데미",
     "year": "작업기간: 2일",
     "area": "66.12㎡ (20py)",
     "location": "프리미엄 헤어살롱 & 뷰티 공간 기획",
@@ -2570,7 +2596,7 @@
     "categoryTag": "주거 공간 리노베이션",
     "categoryName": "주거 공간 리노베이션",
     "title": "한남 하이엔드 테라스 레지던스 리노베이션",
-    "designer": "KD박정호",
+    "designer": "KD아카데미",
     "year": "작업기간: 5주",
     "area": "280㎡ (85py)",
     "location": "프리미엄 주거 기획",
@@ -2662,7 +2688,7 @@
     "categoryTag": "업무 공간 설계",
     "categoryName": "업무 공간 설계",
     "title": "테크 AI 연구소 크리에이티브 오피스",
-    "designer": "KD박정호",
+    "designer": "KD아카데미",
     "year": "작업기간: 3주",
     "area": "560㎡ (170py)",
     "location": "애자일 워크스페이스",
@@ -2753,7 +2779,7 @@
     "categoryTag": "맞춤 가구 디자인",
     "categoryName": "맞춤 가구 디자인",
     "title": "‘Curve & Shadow’ 건축적 라운지 체어 & 커피 테이블",
-    "designer": "KD박정호",
+    "designer": "KD아카데미",
     "year": "작업기간: 2일",
     "area": "W850 x D780 x H720 (mm)",
     "location": "가구 디테일 & 제작 도면",
@@ -2883,38 +2909,8 @@
       return 'text-[#656a76] bg-[#15181e] border border-[#3b3d45] font-normal';
     }
 
-    // ⭐️ [공간 디자인 5대 테마 전환 시스템] ⭐️
-    const THEMES = [
-      { id: 'theme-warm-travertine', name: '2. 웜 트래버틴', title: '2. 웜 트래버틴 & 오크 (추천)' },
-      { id: 'theme-minimal-white', name: '1. 미니멀 화이트', title: '1. 미니멀 아키텍처 화이트' },
-      { id: 'theme-dark-slate', name: '3. 딥 슬레이트 다크', title: '3. 딥 슬레이트 & 앰버 다크' },
-      { id: 'theme-modern-ecru', name: '4. 모던 VMD 에크루', title: '4. 모던 VMD & 에크루' },
-      { id: 'theme-technical-bim', name: '5. 테크니컬 BIM', title: '5. 테크니컬 BIM 쿨 그레이' }
-    ];
-
-    function toggleThemeDropdown() {
-      const menu = document.getElementById('theme-dropdown-menu');
-      if (menu) menu.classList.toggle('hidden');
-    }
-
-    function selectTheme(themeId) {
-      THEMES.forEach(t => document.body.classList.remove(t.id));
-      document.body.classList.add(themeId);
-      localStorage.setItem('kd_portfolio_theme', themeId);
-      
-      const themeObj = THEMES.find(t => t.id === themeId);
-      const nameEl = document.getElementById('current-theme-name');
-      if (nameEl && themeObj) {
-        nameEl.innerText = `테마: ${themeObj.name}`;
-      }
-      
-      const menu = document.getElementById('theme-dropdown-menu');
-      if (menu) menu.classList.add('hidden');
-    }
-
+    // ⭐️ [단일 프리미엄 럭셔리 다크 와인 캔버스 시스템 초기화] ⭐️
     function initTheme() {
-      // DESIGN.md Enterprise Dark Canvas System 고정
-      THEMES.forEach(t => document.body.classList.remove(t.id));
       document.body.classList.add('hashi-canvas');
       localStorage.setItem('kd_portfolio_theme', 'hashi-canvas');
     }
@@ -3150,7 +3146,7 @@
                   ` : `
                     <div class="p-3 bg-[#200612] rounded-lg border border-dashed border-[rgba(225,60,95,0.25)] text-[#d4b8c2] font-mono text-xs flex items-center justify-between">
                       <span>현재 포함된 2D 도면이 없습니다.</span>
-                      <button onclick="openUploadModal('${p.id}', 'drawings')" class="text-white font-bold underline">도면 추가하기</button>
+                      <button onclick="openUploadModal('${p.id}', 'drawings')" class="editor-only text-white font-bold underline">도면 추가하기</button>
                     </div>
                   `}
                 </div>
@@ -3752,10 +3748,10 @@
                     <div>
                       <span class="text-[10px] font-mono uppercase text-stone-500 tracking-wider">${COVER_LETTER_DATA.headerTitle || 'Junior Interior Architect Cover Letter'}</span>
                       <h1 class="text-xl sm:text-2xl font-bold tracking-tight text-stone-950 mt-0.5 font-display">${COVER_LETTER_DATA.mainTitle || '자 기 소 개 서'}${isFirstCoverPage ? '' : ' <span class="text-base font-normal text-stone-600">(계속)</span>'}</h1>
-                      <p class="text-[11px] text-stone-600 font-light">${COVER_LETTER_DATA.subtitle || `지원자: ${RESUME_DATA.name || 'KD박정호'}`}</p>
+                      <p class="text-[11px] text-stone-600 font-light">${COVER_LETTER_DATA.subtitle || `지원자: ${RESUME_DATA.name || 'KD아카데미'}`}</p>
                     </div>
                     <div class="text-right text-xs font-mono text-stone-600 space-y-0.5">
-                      <span class="font-bold text-stone-900 block">지원자 : ${RESUME_DATA.name || 'KD박정호'}</span>
+                      <span class="font-bold text-stone-900 block">지원자 : ${RESUME_DATA.name || 'KD아카데미'}</span>
                       <span class="text-[10px] px-1.5 py-0.5 bg-stone-100 border border-stone-300 font-bold">${isOnlyPage ? '자기소개서 (1장 완결)' : `자기소개서 (${pIdx + 1}/${coverPages.length})`}</span>
                     </div>
                   </div>
@@ -3776,7 +3772,7 @@
                 </div>
 
                 <div class="border-t border-stone-300 pt-1 text-center text-[10px] font-mono text-stone-500">
-                  지원자: ${RESUME_DATA.name || 'KD박정호'} | 실내건축 · 공간 디자인 포트폴리오 첨부 (Page ${pageNum}/${totalPrintPages})
+                  지원자: ${RESUME_DATA.name || 'KD아카데미'} | 실내건축 · 공간 디자인 포트폴리오 첨부 (Page ${pageNum}/${totalPrintPages})
                 </div>
               </div>
               `;
@@ -4426,7 +4422,7 @@
 
       const descEl = document.getElementById('web-hero-desc');
       if (descEl) {
-        const descText = LANDING_DATA.heroDesc || `신입 실내건축 · 공간 디자이너 및 VMD 지원자 ${RESUME_DATA.name || 'KD박정호'}입니다.\n정밀한 2D 실시설계와 3D 공간 시각화, 브랜드의 입체적 경험을 완성하는 공간 디자인 포트폴리오를 확인하세요.`;
+        const descText = LANDING_DATA.heroDesc || `신입 실내건축 · 공간 디자이너 및 VMD 지원자 ${RESUME_DATA.name || 'KD아카데미'}입니다.\n정밀한 2D 실시설계와 3D 공간 시각화, 브랜드의 입체적 경험을 완성하는 공간 디자인 포트폴리오를 확인하세요.`;
         if (descText.includes('※ 현재 대표 프로젝트')) {
           descEl.innerText = descText;
         } else {
@@ -4742,15 +4738,15 @@
         if (btn2d) {
           btn2d.className = activeDrawingsCount === 0
             ? "flex items-center gap-1.5 px-3.5 py-1.5 text-xs font-mono font-bold transition-all text-stone-500 opacity-40 cursor-not-allowed"
-            : "flex items-center gap-1.5 px-3.5 py-1.5 text-xs font-mono font-bold transition-all text-stone-400 md:text-stone-700 hover:bg-stone-800 md:hover:bg-stone-200 cursor-pointer";
-          if (badge2d) badge2d.className = "text-[10px] px-1.5 py-0.5 bg-stone-800 md:bg-stone-200 text-stone-300 md:text-stone-700 font-semibold font-mono";
+            : "flex items-center gap-1.5 px-3.5 py-1.5 text-xs font-mono font-bold transition-all text-stone-300 hover:bg-stone-700 cursor-pointer";
+          if (badge2d) badge2d.className = "text-[10px] px-1.5 py-0.5 bg-stone-800 text-stone-300 font-semibold font-mono";
           btn2d.title = activeDrawingsCount === 0 ? "포함된 2D 도면이 없습니다 (모두 제외됨)" : "2D CAD 실시도면 구역으로 이동";
         }
       } else {
         currentActiveView = item.id;
         if (btn3d) {
-          btn3d.className = "flex items-center gap-1.5 px-3.5 py-1.5 text-xs font-mono font-bold transition-all text-stone-400 md:text-stone-700 hover:bg-stone-800 md:hover:bg-stone-200 cursor-pointer";
-          if (badge3d) badge3d.className = "text-[10px] px-1.5 py-0.5 bg-stone-800 md:bg-stone-200 text-stone-300 md:text-stone-700 font-semibold font-mono";
+          btn3d.className = "flex items-center gap-1.5 px-3.5 py-1.5 text-xs font-mono font-bold transition-all text-stone-300 hover:bg-stone-700 cursor-pointer";
+          if (badge3d) badge3d.className = "text-[10px] px-1.5 py-0.5 bg-stone-800 text-stone-300 font-semibold font-mono";
         }
         if (btn2d) {
           btn2d.className = "flex items-center gap-1.5 px-3.5 py-1.5 text-xs font-mono font-bold transition-all shadow-xs bg-stone-800 md:bg-stone-900 text-white cursor-pointer";
@@ -4924,7 +4920,7 @@
               type="button"
               onclick="switchModalMediaByIndex(${idx})"
               id="thumb-media-${idx}"
-              class="shrink-0 w-20 sm:w-24 h-14 sm:h-16 border-2 transition-all overflow-hidden relative cursor-pointer ${isActive ? 'border-white md:border-stone-900 ring-2 ring-white/60 md:ring-stone-900/30 shadow-md scale-102 z-10' : 'border-stone-700 md:border-stone-300 opacity-60 hover:opacity-100'}"
+              class="shrink-0 w-20 sm:w-24 h-14 sm:h-16 border-2 transition-all overflow-hidden relative cursor-pointer ${isActive ? 'border-white ring-2 ring-white/60 shadow-md scale-102 z-10' : 'border-stone-700 md:border-stone-300 opacity-60 hover:opacity-100'}"
               title="${item.title}"
             >
               <img src="${item.image}" alt="${item.title}" class="w-full h-full object-cover" />
@@ -4938,7 +4934,7 @@
               type="button"
               onclick="switchModalMediaByIndex(${idx})"
               id="thumb-media-${idx}"
-              class="shrink-0 w-20 sm:w-24 h-14 sm:h-16 border-2 transition-all overflow-hidden relative bg-white flex flex-col justify-between p-1 cursor-pointer ${isActive ? 'border-white md:border-stone-900 ring-2 ring-white/60 md:ring-stone-900/30 shadow-md scale-102 z-10' : 'border-stone-700 md:border-stone-300 opacity-60 hover:opacity-100'}"
+              class="shrink-0 w-20 sm:w-24 h-14 sm:h-16 border-2 transition-all overflow-hidden relative bg-white flex flex-col justify-between p-1 cursor-pointer ${isActive ? 'border-white ring-2 ring-white/60 shadow-md scale-102 z-10' : 'border-stone-700 md:border-stone-300 opacity-60 hover:opacity-100'}"
               title="${item.title} (2D 도면)"
             >
               <div class="w-full h-7 bg-white flex items-center justify-center overflow-hidden">
@@ -5027,7 +5023,7 @@
       }
 
       targetDrawing.enabled = false;
-      await saveCustomData('drawings', p.id, p.drawings);
+      await saveProjectCustomData(p.id);
       renderProjects();
       showUploadToast(`🚫 '${targetDrawing.title}' 도면이 제외되었습니다.`);
 
@@ -7896,8 +7892,7 @@ ${sourceText || '(초안 없음. 해당 항목에 어울리는 최상의 실무 
     async function saveProjectCustomData(projectId) {
       const p = PROJECTS.find(item => item.id === projectId);
       if (!p) return;
-      try {
-        const payload = {
+      const payload = {
           title: p.title,
           categoryName: p.categoryName,
           categoryTag: p.categoryTag,
@@ -7912,13 +7907,18 @@ ${sourceText || '(초안 없음. 해당 항목에 어울리는 최상의 실무 
           drawings: p.drawings,
           isCustom: p.isCustom
         };
+      try {
         const db = await openDB();
         const tx = db.transaction(STORE_NAME, 'readwrite');
         tx.objectStore(STORE_NAME).put({ key: `proj_v2_${projectId}`, data: payload, timestamp: Date.now() });
-        return new Promise(resolve => { tx.oncomplete = () => resolve(true); });
+        return await new Promise((resolve, reject) => {
+          tx.oncomplete = () => resolve(true);
+          tx.onerror = tx.onabort = () => reject(tx.error || new Error("프로젝트 저장 실패"));
+        });
       } catch (err) {
         console.warn('IndexedDB save failed, using localStorage fallback', err);
-        try { localStorage.setItem(`proj_v2_${projectId}`, JSON.stringify(payload)); } catch(e){}
+        localStorage.setItem(`proj_v2_${projectId}`, JSON.stringify(payload));
+        return true;
       }
     }
 
@@ -8201,7 +8201,7 @@ ${sourceText || '(초안 없음. 해당 항목에 어울리는 최상의 실무 
         categoryTag: category ? category.toUpperCase() : "COMMERCIAL & RETAIL",
         categoryName: category || "상업 · 신규 공간 기획",
         title: title || `새 프로젝트 #${idx}`,
-        designer: "김민재",
+        designer: RESUME_DATA.name,
         year: "작업기간: 4주",
         area: "198㎡ (60py)",
         location: "신규 공간 기획",
@@ -8699,11 +8699,15 @@ ${sourceText || '(초안 없음. 해당 항목에 어울리는 최상의 실무 
       // 3. 저장된 이력서, 자기소개서, 포트폴리오 메타 데이터 복원
       const savedResume = await loadResumeData();
       if (savedResume) {
+        if (savedResume.name === 'KD박정호') savedResume.name = 'KD아카데미';
         RESUME_DATA = Object.assign({}, DEFAULT_RESUME_DATA, savedResume);
       }
 
       const savedCover = await loadCoverLetterData();
       if (savedCover) {
+        if (savedCover.subtitle && savedCover.subtitle.includes('KD박정호')) {
+          savedCover.subtitle = savedCover.subtitle.replace(/KD박정호/g, 'KD아카데미');
+        }
         COVER_LETTER_DATA = Object.assign({}, DEFAULT_COVER_LETTER_DATA, savedCover);
       }
       if (COVER_LETTER_DATA.items) {
@@ -8716,12 +8720,16 @@ ${sourceText || '(초안 없음. 해당 항목에 어울리는 최상의 실무 
 
       const savedMeta = await loadPortfolioMetaData();
       if (savedMeta) {
+        if (savedMeta.applicantName === 'KD박정호') savedMeta.applicantName = 'KD아카데미';
         PORTFOLIO_META = Object.assign({}, DEFAULT_PORTFOLIO_META, savedMeta);
       }
       updateResumeWebDOM();
 
       const savedLanding = await loadLandingData();
       if (savedLanding) {
+        if (savedLanding.heroDesc && savedLanding.heroDesc.includes('KD박정호')) {
+          savedLanding.heroDesc = savedLanding.heroDesc.replace(/KD박정호/g, 'KD아카데미');
+        }
         LANDING_DATA = Object.assign({}, DEFAULT_LANDING_DATA, savedLanding);
       }
       updateLandingWebDOM();
@@ -8786,8 +8794,7 @@ ${sourceText || '(초안 없음. 해당 항목에 어울리는 최상의 실무 
     });
 
     // 초기 실행: 즉시 1차 렌더링 후 IndexedDB 커스텀 데이터 비동기 복원
-    renderProjects();
-    initCustomUploads();
+    // 문서 전체를 읽은 뒤 원본 스냅샷을 확보하고 초기화합니다.
 
     // ========================================================
     // ⭐️ [보안 관리자 인증 & 본인 전용 편집 모드 시스템] ⭐️
@@ -8950,50 +8957,30 @@ ${sourceText || '(초안 없음. 해당 항목에 어울리는 최상의 실무 
       try {
         showModeToast(true, "⏳ <strong>수정본을 패키징하는 중입니다...</strong>");
 
-        // 1. 현재 배포된 원본 index.html 가져오기
-        let html = "";
-        try {
-          const targetUrl = window.location.pathname.endsWith('.html') ? window.location.pathname : './index.html';
-          const resp = await fetch(targetUrl, { cache: 'no-store' });
-          if (resp.ok) {
-            html = await resp.text();
-          }
-        } catch (e) {
-          console.warn("Fetch failed, trying fallback", e);
+        // 편집 전 문서를 사용하므로 file:// 실행에서도 원본 fetch가 필요 없습니다.
+        let html = originalWebsiteHTML;
+        if (!html && window.location.protocol !== 'file:') {
+          const response = await fetch(window.location.href, { cache: 'no-store' });
+          if (response.ok) html = await response.text();
+        }
+        if (!html) throw new Error('문서 준비가 끝난 뒤 다시 저장해 주세요.');
+
+        // 치환 콜백은 $&, $` 등의 원문을 보존하고, < 이스케이프는 스크립트 종료를 방지합니다.
+        const dataBlocks = [
+          [/const DEFAULT_RESUME_DATA\s*=\s*\{[\s\S]*?\n\s*\};/, 'const DEFAULT_RESUME_DATA', RESUME_DATA],
+          [/const DEFAULT_COVER_LETTER_DATA\s*=\s*\{[\s\S]*?\n\s*\};/, 'const DEFAULT_COVER_LETTER_DATA', COVER_LETTER_DATA],
+          [/const DEFAULT_LANDING_DATA\s*=\s*\{[\s\S]*?\n\s*\};/, 'const DEFAULT_LANDING_DATA', LANDING_DATA],
+          [/const DEFAULT_PORTFOLIO_META\s*=\s*\{[\s\S]*?\n\s*\};/, 'const DEFAULT_PORTFOLIO_META', PORTFOLIO_META],
+          [/let PROJECTS\s*=\s*\[[\s\S]*?\n\s*\];/, 'let PROJECTS', PROJECTS]
+        ];
+        for (const [pattern, declaration, data] of dataBlocks) {
+          if (!pattern.test(html)) throw new Error(`${declaration} 저장 위치를 찾지 못했습니다.`);
+          const json = JSON.stringify(data, null, 2).replace(/</g, '\\u003c');
+          html = html.replace(pattern, () => `${declaration} = ${json};`);
         }
 
-        if (!html) {
-          alert("원본 파일을 읽어오지 못했습니다. 인터넷 연결 또는 로컬 환경을 확인해 주세요.");
-          return;
-        }
-
-        // 2. DEFAULT_RESUME_DATA 치환 (현재 메모리/로컬저장소 최신값 반영)
-        if (typeof RESUME_DATA !== 'undefined' && RESUME_DATA) {
-          const resumeJson = JSON.stringify(RESUME_DATA, null, 2);
-          html = html.replace(/const DEFAULT_RESUME_DATA\s*=\s*\{[\s\S]*?\n\s*\};/, `const DEFAULT_RESUME_DATA = ${resumeJson};`);
-        }
-
-        // 3. DEFAULT_COVER_LETTER_DATA 치환
-        if (typeof COVER_LETTER_DATA !== 'undefined' && COVER_LETTER_DATA) {
-          const coverJson = JSON.stringify(COVER_LETTER_DATA, null, 2);
-          html = html.replace(/const DEFAULT_COVER_LETTER_DATA\s*=\s*\{[\s\S]*?\n\s*\};/, `const DEFAULT_COVER_LETTER_DATA = ${coverJson};`);
-        }
-
-        // 4. DEFAULT_LANDING_DATA 치환
-        if (typeof LANDING_DATA !== 'undefined' && LANDING_DATA) {
-          const landingJson = JSON.stringify(LANDING_DATA, null, 2);
-          html = html.replace(/const DEFAULT_LANDING_DATA\s*=\s*\{[\s\S]*?\n\s*\};/, `const DEFAULT_LANDING_DATA = ${landingJson};`);
-        }
-
-        // 5. PROJECTS 치환 (순서, enabled 상태, 명칭 등 반영)
-        if (typeof PROJECTS !== 'undefined' && PROJECTS) {
-          const projectsJson = JSON.stringify(PROJECTS, null, 2);
-          html = html.replace(/let PROJECTS\s*=\s*\[[\s\S]*?\n\s*\];/, `let PROJECTS = ${projectsJson};`);
-        }
-
-        // 5-2. 현재 선택된 테마 클래스를 <body>에 각인
-        const currentTheme = localStorage.getItem('kd_portfolio_theme') || 'theme-warm-travertine';
-        html = html.replace(/<body class="[^"]*">/, `<body class="${currentTheme} bg-[#FBF9F5] text-stone-900 antialiased font-sans pb-24">`);
+        // 현재 기본 다크 디자인을 유지하고 편집 모드 상태는 내보내지 않습니다.
+        html = html.replace(/<body class="[^"]*">/, '<body class="hashi-canvas antialiased font-sans pb-24">');
 
         // 6. 브라우저에서 index.html 다운로드 트리거
         const blob = new Blob([html], { type: 'text/html;charset=utf-8' });
@@ -9024,18 +9011,18 @@ ${sourceText || '(초안 없음. 해당 항목에 어울리는 최상의 실무 
       if (modal) modal.classList.add('hidden');
     }
 
-    // 테마 드롭다운 외부 클릭 시 닫기
-    window.addEventListener('click', (e) => {
-      const themeContainer = document.getElementById('theme-selector-container');
-      const themeMenu = document.getElementById('theme-dropdown-menu');
-      if (themeContainer && themeMenu && !themeContainer.contains(e.target)) {
-        themeMenu.classList.add('hidden');
-      }
-    });
-
     // 테마 및 모드 초기화 실행
-    initTheme();
-    initPortfolioMode();
+    let originalWebsiteHTML = '';
+    document.addEventListener('DOMContentLoaded', () => {
+      // 파일 직접 실행에서도 저장할 수 있도록 편집 전 문서를 보관합니다.
+      const originalDocument = document.documentElement.cloneNode(true);
+      originalDocument.querySelectorAll('style:not(#portfolio-styles):not(#dynamic-print-style)').forEach(style => style.remove());
+      originalWebsiteHTML = '<!DOCTYPE html>\n' + originalDocument.outerHTML;
+      renderProjects();
+      initTheme();
+      initPortfolioMode();
+      initCustomUploads();
+    }, { once: true });
   </script>
 
   <!-- ⭐️ [플로팅 관리자 바: 인증된 본인에게만 표시됨 (일반 방문자에게는 100% 숨김)] ⭐️ -->
